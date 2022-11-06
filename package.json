@@ -1,0 +1,24 @@
+{
+  "name": "topshop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.6",
+    "autoprefixer": "^10.4.12",
+    "cookie": "^0.5.0",
+    "cookies-next": "^2.1.1",
+    "next": "12.3.1",
+    "postcss": "^8.4.17",
+    "react": "18.2.0",
+    "react-cookie": "^4.1.1",
+    "react-dom": "18.2.0",
+    "react-redux": "^8.0.4",
+    "tailwindcss": "^3.1.8"
+  }
+}
