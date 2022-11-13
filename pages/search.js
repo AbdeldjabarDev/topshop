@@ -1,15 +1,6 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react";
-import ProductsContainer from "../components/ProductsContainer";
-import Nav from "../components/Nav";
-import store from "../state/store";
-import { userAgent } from "next/server";
 import SearchComp from "../components/SearchComp";
-function useForceUpdate()
-{
-    const [val,setVal] = useState(0)
-    return () => {setVal(val => val+1)}
-}
 export default function Search(props)
 {
     let router = useRouter();

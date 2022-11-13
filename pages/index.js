@@ -3,7 +3,7 @@ import Nav from '../components/Nav'
 
 import { setContent,selectContent, setUser, setToken, setLoggedIn } from '../state/cartSlice'
 import { addProducts, setReady } from '../state/productsSlice'
-
+import useSWR, { unstable_serialize } from 'swr'
 import { Container } from '../components/Container'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -73,7 +73,7 @@ if(t != undefined && u != undefined)
     <div className='text-4xl text-black'>{e.id + " name : " + e.name}</div>
    })}
     </div> */}
-    <ProductsContainer products={store.getState().products.value.filter((e)=> (e.rating-4)*5 > 4)}/>
+    <ProductsContainer products={products.filter((e)=> (e.rating-4)*5 > 4)}/>
     {/* <Container child={content} tailwind="w-[80%] h-full "></Container> */}
         
         </div>
