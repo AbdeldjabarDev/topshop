@@ -22,7 +22,7 @@ export default function Home()
    // let count = useSelector(selectContent)
     let dispatch = useDispatch();
     
-    let [products,setProducts] = useState(store.getState().products.value);
+    let [products,setProducts] = useState([]);
    useEffect(()=>{ store.subscribe(()=>{
     //setProducts(store.getState().products.value)
     
