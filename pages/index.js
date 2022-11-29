@@ -18,7 +18,7 @@ let initiated =false;
 export default function Home()
 {
     
-   
+   console.log('Backend url : ' + process.env.BACKEND_URL);
    // let count = useSelector(selectContent)
     let dispatch = useDispatch();
     
@@ -29,7 +29,7 @@ export default function Home()
 
 })
 if(!store.getState().products.ready)
-fetch('http://localhost:23000/products')
+fetch(process.env.BACKEND_URL || "http://localhost:23000/"+'products')
 .then((response)=> response.json())
 .then((data)=>
 {
@@ -65,7 +65,7 @@ if(t != undefined && u != undefined)
   
      <ProductsContainer products={products} />  
     
-    <div className='text-2xl font-semibold w-fit ml-[10%] mr-auto mt-[12vh] mb-[2%] before:bg-red-600 before:w-20 before:h-20'>Top Rated Products</div>
+    <div className='text-2xl font-semibold w-fit ml-[10%] mr-auto mt-[2vh] mb-[2%] before:bg-red-600 before:w-20 before:h-20'>Top Rated Products</div>
     {/* <div>{store.getState().products.value.length + " initiated : " + initiated}</div> */}
     {/* <div className='flex flex-col'>
     {store.getState().products.value.map((e)=>

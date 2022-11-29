@@ -2,7 +2,7 @@
 
 import { Children, useRef, useState } from "react"
 import ProductCont from "./ProductCont"
-
+import Image from "next/image";
 export default function ProductsContainer(props)
 {
     let [x,setX] = useState(0);
@@ -18,7 +18,7 @@ export default function ProductsContainer(props)
      </div>
    </div>
          
-   <div className='bg-black w-20 h-20 absolute top-[50%] left-[2%] translate-y-[-50%] content-center text-center pt-3 rounded-full cursor-default shadow-md active:shadow-none text-5xl text-white'
+   <div className='bg-black w-16 h-16 absolute top-[50%] left-[2%] translate-y-[-50%] content-center text-center pt-3 rounded-full cursor-default shadow-md active:shadow-none text-5xl text-white'
     onClick={(e)=>
     {
         // if(x > 0)
@@ -34,14 +34,14 @@ export default function ProductsContainer(props)
 
     setX(x+(100/props.products.length)*4)
 
-    }} style={{transition:"all 2s ease",transitionDelay:"1s",display: Math.round(x) == 0 ? "none":"block",transitionProperty:"display"}}>{"<"}</div>
-     <div className='bg-black w-20 h-20 absolute top-[50%] left-[88%] translate-y-[-50%] content-center text-center pt-3 rounded-full cursor-default shadow-md active:shadow-none text-5xl text-white'
+    }} style={{transition:"all 2s ease",transitionDelay:"1s",display: Math.round(x) == 0 ? "none":"block",transitionProperty:"display"}}><Image src="/images/previous_arrow.svg" layout="fill"></Image></div>
+     <div className=' w-16 h-16 absolute top-[50%] left-[88%] translate-y-[-50%] content-center text-center pt-3 rounded-full cursor-default shadow-md active:shadow-none text-5xl text-white'
     onClick={(e)=>
     {
         if(x-(100/props.products.length)*4 <= -100)
         return;
         setX(x-(100/props.products.length)*4)
-    }}>{">"}</div>
+    }}><Image src="/images/next_arrow.svg" layout="fill"></Image></div>
     {/* <div>{x} : {100}</div> */}
     
      {/* <div className='w-fit absolute left-[70%] top-[100%] bg-black text-white p-3 mt-5'>View all Products</div> */}

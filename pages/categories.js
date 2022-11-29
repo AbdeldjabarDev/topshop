@@ -10,12 +10,14 @@ export default function Categories()
     return(
     <div className="w-full h-full flex flex-col">
 <Nav></Nav>
-<div className="mt-[5%] contetnt-center ml-auto mr-auto">
-<div className="text-3xl ml-[10%] mb-[2%] first-letter:capitilize ">{q.toUpperCase()}</div>
-<div className="ml-auto mr-auto flex border border-red-600 w-[80%]">
+<div className="mt-[5.5%] flex w-full">
+<div className="flex flex-col bg-[#fbfbfb] shadow-md  ml-[1.3%] mr-[0.5%]  w-[78%]">
+<div className="pl-[2%]  flex flex-col">
+<div className="text-3xl  mt-[2%]">{q.toUpperCase()}</div>
 <ProductsContainer products = {products} all/>
 </div>
-
+</div>
+<div className="w-[20%] border border-slate-700"></div>
 </div>
     </div>)
 }

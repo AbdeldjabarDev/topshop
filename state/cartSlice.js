@@ -19,6 +19,8 @@ export const slice =  createSlice({
         token:'',
         loggedIn:false,
         count:[],
+        last_logged_in:'',
+        total:0,
         
     },
     reducers :
@@ -29,7 +31,8 @@ export const slice =  createSlice({
             
                 console.log(action.payload.title  + ':' + 'added');
                 state.value.push(action.payload);
-                state.count.push(0)
+                state.count.push(1);
+                state.total += action.payload.price;
                 return;
             }
             else
@@ -52,8 +55,15 @@ export const slice =  createSlice({
 
                 state.value = result;  
                 state.count  = countResult;
+                let t= 0;
+                state.value.forEach((p,i)=>{
+                    t+= p.price*state.count.at(i);
+
+                })
+                state.total= t;
+
                 state.value.forEach((e)=> console.log(e.title));
-               
+                
                 return;
             }
             else
@@ -82,7 +92,12 @@ export const slice =  createSlice({
         {
             let i = findInArray(state.value,action.payload.p);
             if(i != -1)
-            state.count[i] = action.payload.c;   
+            {
+                state.total += (action.payload.c-state.count.at(i))* action.payload.p.price;
+                state.count[i] = action.payload.c;  
+               
+            }
+           
         }
     }
 })

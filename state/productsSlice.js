@@ -19,7 +19,6 @@ export const slice =  createSlice({
     reducers :
     {     
         addProducts : (state,action) => {
-            
             action.payload.forEach((e)=>
             {
                 state.value.push(e);
@@ -29,7 +28,6 @@ export const slice =  createSlice({
                let i = findInArray(state.categories,e.category);
                 if( i != -1 )
                 {
-                    
                    let c = state.categories.at(i);
                     console.log('increasing ' + c + 'from '+  c.count +'to' + c.count+1);
                     c.count += 1;

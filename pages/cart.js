@@ -4,15 +4,20 @@ import CartProductCont from "../components/CartProductCont";
 import { useEffect, useState } from "react";
 import { Router, useRouter } from "next/router";
 export default function Cart(props) {
-    let router = useRouter();
+  let router = useRouter();
   let [empty, setEmpty] = useState(false);
+  let [loading,setLoading] = useState(false);
+  let [totalAmount,setTotalAmount] = useState(store.getState().cart.total);
   useEffect(() => {
     if (store.getState().cart.value.length == 0) setEmpty(true);
     return store.subscribe(() => {
       if (store.getState().cart.value.length == 0) setEmpty(true);
+      
+      setTotalAmount(store.getState().cart.total);
+    
     });
   });
-
+  
   if (empty)
     return (
       <div className="w-full h-full flex flex-col">
@@ -34,10 +39,12 @@ export default function Cart(props) {
           })}
         </div>
 
-        <div className="flex border border-red-400 ">
-          <div
+        <div className="flex flex-col border border-red-400 ">
+        <div className="ml-auto mr-[10%] mb-[2%]">{"Total : " +totalAmount+ "$"}</div>
+          <button
             className="bg-green-600 p-3 rounded-md mb-10 font-semibold ml-auto mr-auto text-white"
             onClick={(e) => {
+              setLoading(true);
               let items = [];
               let current_products = store.getState().cart.value;
               for (let i = 0; i < current_products.length; i++) {
@@ -63,13 +70,20 @@ export default function Cart(props) {
               .then((response)=> response.json())
               .then((data)=>
               {
+                setLoading(false);
                 router.push(data.url)
+
               })
               .catch((err) => console.log(err));
             }}
           >
-            Confirm
-          </div>
+            
+            {loading == false ? "Confirm" : ""}
+            <div
+              className="w-8 h-8 ml-auto mr-auto rounded-full border border-blue-500 border-b-white animate-spin"
+              style={{ display: loading == true ? "block" : "none" }}
+            ></div>
+          </button>
         </div>
       </div>
     </div>
