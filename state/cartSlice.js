@@ -21,10 +21,27 @@ export const slice =  createSlice({
         count:[],
         last_logged_in:'',
         total:0,
+        resetEmail:'',
+        resetCode:'',
         
     },
     reducers :
-    {     
+    {   setResetCode : (state,action)=>
+        { 
+        state.resetCode = action.payload;
+        },
+        removeResetCode : (state,action)=>
+        {
+            state.resetCode  ='';
+        },
+         setResetEmail:(state,action)=>
+        {
+      state.resetEmail = action.payload;
+        }, 
+        removeResetEmail : (state,action)=>
+        {
+       state.resetEmail = '';
+        },
         addProduct : (state,action) => {
             if(findInArray(state.value,action.payload) === -1)
             {
@@ -101,7 +118,7 @@ export const slice =  createSlice({
         }
     }
 })
-export const {addProduct,removeProduct,setUser,setToken,setLoggedIn,setQuery,setProductcount} = slice.actions
+export const {addProduct,removeProduct,setUser,setToken,setLoggedIn,setQuery,setProductcount,setResetEmail,removeResetEmail,removeResetCode,setResetCode} = slice.actions
 export default slice.reducer;
 // import { createSlice } from '@reduxjs/toolkit'
 

@@ -125,13 +125,15 @@ export default function Login(props) {
         {
          setPasswordError('Wrong email or password try again');
          setEmailError('');
-         setGeneralError('')
+         setGeneralError('');
+         setLoading(false);
         }
         else if(data.error == 4)
         {
          setEmailError('No account matches this email please sign up');
          setPasswordError('');
-         setGeneralError('')
+         setGeneralError('');
+         setLoading(false);
         }
       })
       .catch((err) => {
@@ -173,7 +175,7 @@ export default function Login(props) {
       className="relative w-full h-full flex bg-[f1f1f1]"
       style={{ transition: "all 0.8s ease" }}
     >
-      <div className="absolute border border-slate-600 rounded-lg shadow-lg top-[50%] left-[50%] translate-x-[-50%] mt-[5%] w-[40%] bg-white">
+      <div className="absolute border border-slate-600 mb-[5%] rounded-lg shadow-lg top-[50%] left-[50%] translate-x-[-50%] mt-[5%] w-[40%] bg-white">
         <div
           className="flex flex-col gap-6 h-fit  mt-[3%]"
           style={{ transition: "height 0.8s ease" }}
@@ -181,10 +183,38 @@ export default function Login(props) {
           <div className="text-4xl font-semibold font-sans ml-auto mr-auto mb-[2%]">
             {loginState == true ? "Login" : "Sign up"}
           </div>
-          <input
-            className=" w-[75%] pl-3 ml-auto mr-auto h-[7vh]  rounded-md border border-slate-400 mb-[2%]"
+         <form className="flex flex-col w-full ml-auto mr-auto"  onSubmit={(e)=>
+        {
+          e.preventDefault();
+          console.log('form submitted ')
+          if(loginState == true)
+          {
+            // if(email.match('/([a-zA-Z0-9-])+@([a-z])+(\.)([a-z])+/g') ==  null )
+            // {
+            //     setEmailError('Invalid email');
+            //     setGeneralError('');
+            //     setPasswordError('');
+            //     setLoading(false);
+            //     return;
+            // }
+              attemptLogin(email, password);
+              setEmailError('');
+              setPasswordError(''); 
+              setGeneralError('');
+
+          }
+          else
+          {
+                     
+attempSignUp(email,password)
+          }
+        
+        }}>
+         <input
+            className=" w-[80%] pl-3 ml-auto mr-auto h-[7vh]  rounded-md border border-slate-400 mb-[2%]"
             placeholder="Email"
             type="email"
+            id=""
             onChange={(e) => {
              
               setEmail(e.target.value);
@@ -193,9 +223,10 @@ export default function Login(props) {
            <div className="text-red-600 ml-[12.5%]">{emailError}</div>
 
           <input
-            className=" w-[75%] pl-3 ml-auto mr-auto h-[7vh]  rounded-md border border-slate-400 mb-[2%]"
+            className=" w-[80%] pl-3 ml-auto mr-auto h-[7vh]  rounded-md border border-slate-400 mb-[2%]"
             placeholder="Password"
             type="password"
+            id=""
             onChange={(e) => {
               setPassword(e.target.value);
             
@@ -222,36 +253,10 @@ export default function Login(props) {
             style={{ display: loginState == true ? "none" : "inline" }}
           ></input> */}
           
-          <button
+          <button type="submit"
             onClick={(e) => {
+            
             //   console.log("email : " + email + "," + "password : " + password);
-            if(loginState === true)
-            {
-              if(email.match(new RegExp('(a-zA-Z0-9)*@([a-z])+\.([a-z])+')) ==  null )
-              {
-                  setEmailError('Invalid email');
-                  setGeneralError('');
-                  setPasswordError('');
-                  return;
-              }
-                attemptLogin(email, password);
-                setEmailError('');
-                setPasswordError('');
-                setGeneralError('');
-            }
-          
-            else
-            {
-              if(email.match(new RegExp('(a-zA-Z0-9)*@([a-z])+\.([a-z])+')) ==  null )
-              {
-                  setEmailError('Invalid email');
-                  setGeneralError('');
-                  setPasswordError('');
-                  return;
-              }  
-              
-  attempSignUp(email,password)
-            }
             }}
             className="ml-auto mr-auto w-[20%] text-lg bg-green-600 text-white p-3 rounded-md"
           >
@@ -261,6 +266,7 @@ export default function Login(props) {
               style={{ display: loading == true ? "block" : "none" }}
             ></div>
           </button>
+         </form>
         </div>
         <div className="flex flex-col">
           <div

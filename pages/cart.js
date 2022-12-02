@@ -3,6 +3,7 @@ import Nav from "../components/Nav";
 import CartProductCont from "../components/CartProductCont";
 import { useEffect, useState } from "react";
 import { Router, useRouter } from "next/router";
+import { getCookie } from "cookies-next";
 export default function Cart(props) {
   let router = useRouter();
   let [empty, setEmpty] = useState(false);
@@ -59,18 +60,19 @@ export default function Cart(props) {
                   quantity: store.getState().cart.count.at(i),
                 });
               }
-              console.log(JSON.stringify(items));
+             // console.log(JSON.stringify({its:items,uid:store.getState().cart.user}));
               fetch("http://localhost:23000/purchase", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
                 },
-                body: JSON.stringify(items),
+                body: JSON.stringify({its:items,uid:getCookie('topshop_userId')}),
               })
               .then((response)=> response.json())
               .then((data)=>
               {
                 setLoading(false);
+                if(data.url!=undefined)
                 router.push(data.url)
 
               })
@@ -80,7 +82,7 @@ export default function Cart(props) {
             
             {loading == false ? "Confirm" : ""}
             <div
-              className="w-8 h-8 ml-auto mr-auto rounded-full border border-blue-500 border-b-white animate-spin"
+              className="w-8 h-8 ml-auto mr-auto rounded-full border border-blue-900 border-b-white animate-spin"
               style={{ display: loading == true ? "block" : "none" }}
             ></div>
           </button>

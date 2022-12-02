@@ -16,6 +16,7 @@ function getData(callback)
 }
 export default function SearchComp(props)
 {
+    let res = {};
     let [products,setProducts] = useState([]);
   useEffect(()=>
   {
@@ -33,8 +34,8 @@ export default function SearchComp(props)
     return(
         <div className="w-full h-full flex flex-col">
         <Nav ></Nav>
-       <div className="ml-auto mr-auto flex flex-col w-[60%]">
-       <div className="text-3xl ml-[10%] mt-[12%]">Search results for  "{props.query}"</div>
+        <div className="text-3xl ml-[20%] mt-[12%]">Search results for  "{props.query}"</div>
+       <div className="ml-auto mr-auto mt-5 flex flex-col w-[60%] bg-white shadow-md pl-5">
         <ProductsContainer products={products} all></ProductsContainer>
        </div>
         </div>

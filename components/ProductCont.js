@@ -61,12 +61,12 @@ export default function ProductCont(props) {
       </div>
       <div className="relative w-60 h-60 flex flex-col bg-[#fefefe]   border">
         <img
-          className="w-[100%] ml-auto mr-auto h-[90%] z-10"
+          className="w-[100%] ml-auto mr-auto h-[68%] z-10"
           src={props.product.thumbnail}
         ></img>
         <div className="flex flex-col gap-2">
           <div className="flex text-black w-[100%]">
-            <div className="text-md max-w-[50%]  ml-2 mr-auto">
+            <div className="text-md max-w-[60%]  ml-2 mr-auto">
               {props.product.title}
             </div>
             {/* <div className="text-xl  ml-2 mr-auto">{props.product.name}</div> */}

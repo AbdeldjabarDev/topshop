@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import Carouseler from "../components/Carouseler";
-
+import {setResetEmail,removeResetEmail,setResetCode,removeResetCode} from '../state/cartSlice'
+import store from "../state/store";
 function RequestReset(props)
 {
     
@@ -16,57 +18,71 @@ export default function Reset(props)
    let pRef = useRef();
    let npRef = useRef();
    let [error,setE] = useState();
-   let em,c;
+   let [loading,setLoading] = useState(false);
+   let dispatch = useDispatch();
    
     return(<div className="w-full h-full flex flex-col">
       <div className="w-[50%]  bg-white h-[50vh] border border-red-600 overflow-hidden ml-auto mr-auto mt-[10%]">
       <div className="flex" style={{width:"400%"}} ref={contRef}>
-     <div className="w-full h-full  flex flex-col gap-6 mt-[5%]">
+     <div className="w-full h-full  flex flex-col gap-6 mt-[2%]">
       <div className="ml-auto mr-auto">Enter your email so that we can send you a verification code</div>
       <input className="ml-auto mr-auto w-[70%] pl-2 h-[6vh] rounded-md border" placeholder="Email" ref={eRef}></input>
       <button className="p-3 rounded-md shadow-md bg-green-600 text-white ml-auto mr-auto" onClick={(e)=>
       {
-        
-         em = eRef.current.value.toString();
-        if(em.match(new RegExp('(a-zA-Z0-9)*@([a-z])+\.([a-z])+')) ==  null )
-        {
-          setE('Please enter a valid email');
-          return;
-        }
-
+        console.log('Email submitted ')
+        dispatch(setResetEmail(eRef.current.value.toString()));
+        // if(em.match(/(a-zA-Z0-9)*@([a-z])+\.([a-z])+/g) ==  null )
+        // {
+        //   setE('Please enter a valid email');
+        //   return;
+        // } 
         fetch(process.env.BACKEND_URL  || "http://localhost:23000" +'/reset',{
           method:'POST',
-          body:JSON.stringify({email:em}),
+          body:JSON.stringify({email:store.getState().cart.resetEmail}),
           headers:{
             'Content-Type':'application/json'
           }
         }).then((r) => r.json())
           .then((data)=>
           {
+            setLoading(false)
             if(data.error == 0)
             {
               contRef.current.style.transform = "translateX(-25%)"
             }
+            if(data.error == 5)
+            {
+              setE("Internal service error please try again later")
+            }
+          }).catch((e)=>
+          {
+            console.log(e);
+            setLoading(false)
           })
+          setLoading(true);
         
-      }}>Proceed</button>
+      }}>{loading == true ? "":"Proceed"} <div
+      className="w-8 h-8 ml-auto mr-auto rounded-full border border-white border-b-blue-500 animate-spin"
+      style={{ display: loading == true ? "block" : "none" }}
+    ></div></button>
       <div className="text-red-600">{error}</div>
      </div>
-     <div className="w-full h-full flex flex-col gap-4 s mt-[5%]">
-      <div className="ml-auto mr-auto">We sent a code to {}</div>
+     <div className="w-full h-full flex flex-col gap-4 s mt-[2%]">
+      <div className="ml-auto mr-auto">We sent a code to {store.getState().cart.resetEmail.substring(0,3)+"****"+store.getState().cart.resetEmail.substring(store.getState().cart.resetEmail.indexOf('@'),store.getState().cart.resetEmail.length)}</div>
       <input className="ml-auto mr-auto w-[70%] pl-2 h-[6vh] rounded-md border" placeholder="Verification code" ref={cRef}></input>
       <button className="p-3 rounded-md shadow-md bg-green-600 text-white ml-auto mr-auto" onClick={(e)=>
       {
-       
+        dispatch(setResetCode(cRef.current.value.toString()));
         fetch(process.env.BACKEND_URL  || "http://localhost:23000"+'/reset/verify',{
           method:'POST',
-          body:JSON.stringify({email:em,code:c}),
+          body:JSON.stringify({email:store.getState().cart.resetEmail,code:store.getState().cart.resetCode}),
           headers:{
             'Content-Type':'application/json'
           }
         }).then((r) => r.json())
           .then((data)=>
           {
+            setLoading(false);
             if(data.error == 0)
             {
 
@@ -76,8 +92,17 @@ export default function Reset(props)
             {
               setE(data.message)
             }
+          }).catch((e)=>
+          {
+            setLoading(false);
+            console.log(e);
+            
           })
-      }}>Proceed</button>
+          setLoading(true);
+      }}>{loading == true ? "":"Proceed"} <div
+      className="w-8 h-8 ml-auto mr-auto rounded-full border border-white border-b-blue-500 animate-spin"
+      style={{ display: loading == true ? "block" : "none" }}
+    ></div></button>
       <div className="text-red-600">{error}</div>
       </div>
       <div className="w-full h-full flex flex-col mt-[2%] pl-6 gap-5">
@@ -97,21 +122,31 @@ export default function Reset(props)
           setE('Password field cannot be empty');
           return;
         }
+       
         fetch(process.env.BACKEND_URL || "http://localhost:23000" + '/reset/new',{
           method:'POST',
-          body:JSON.stringify({email:em,code:c,password_hash:pRef.current.value}),
+          body:JSON.stringify({email:store.getState().cart.resetEmail,code:store.getState().cart.resetCode,password_hash:pRef.current.value}),
           headers:{
             'Content-Type':'application/json'
           }
         }).then((r) => r.json())
           .then((data)=>
           {
+            setLoading(false)
             if(data.error == 0)
             {
               contRef.current.style.transform = "translateX(-75%)"
             }
+          }).catch((e)=>
+          {
+            console.log(e)
+            setLoading(false)
           })
-      }}>Proceed</button>
+          setLoading(true)
+      }}>{loading == true ? "":"Proceed"} <div
+      className="w-8 h-8 ml-auto mr-auto rounded-full border border-white border-b-blue-500 animate-spin"
+      style={{ display: loading == true ? "block" : "none" }}
+    ></div></button>
       <div className="text-red-600">{error}</div>
       </div>
       <div className="w-full h-full flex flex-col mt-[2%]">
