@@ -6,5 +6,5 @@ with a frontend and a backend
 - ReactJS
 
 # Assets
-- [https://svgrepo.com] (svgrepo.com)
+- SVGRepo at https://svgrepo.com
 - Figma 
