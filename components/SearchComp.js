@@ -7,7 +7,7 @@ export default function SearchComp(props)
   let [products,setProducts] = useState([]);
   useEffect(()=>
   {
-    fetch("http://localhost:23000/products?query=" + props.query, {
+    fetch("https://topshopserver.onrender.com/products?query=" + props.query, {
         method: "GET", 
       })
         .then((res) => res.json())

@@ -36,7 +36,7 @@ export default function ResetComp(props)
         // } 
         try 
         {
-            let data = await useSWR(process.env.BACKEND_URL  || "http://localhost:23000" +'/reset',{
+            let data = await useSWR('https://topshopserver.onrender.com/' +'/reset',{
                 method:'POST',
                 body:JSON.stringify({email:store.getState().cart.resetEmail}),
                 headers:{
@@ -74,7 +74,7 @@ export default function ResetComp(props)
       <button className="p-3 rounded-md shadow-md bg-green-600 text-white ml-auto mr-auto" onClick={(e)=>
       {
         dispatch(setResetCode(cRef.current.value.toString()));
-        fetch(process.env.BACKEND_URL  || "http://localhost:23000"+'/reset/verify',{
+        fetch('https://topshopserver.onrender.com/'+'/reset/verify',{
           method:'POST',
           body:JSON.stringify({email:store.getState().cart.resetEmail,code:store.getState().cart.resetCode}),
           headers:{
@@ -124,7 +124,7 @@ export default function ResetComp(props)
           return;
         }
        
-        fetch(process.env.BACKEND_URL || "http://localhost:23000" + '/reset/new',{
+        fetch('https://topshopserver.onrender.com/' + '/reset/new',{
           method:'POST',
           body:JSON.stringify({email:store.getState().cart.resetEmail,code:store.getState().cart.resetCode,password_hash:pRef.current.value}),
           headers:{

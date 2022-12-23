@@ -61,7 +61,7 @@ export default function CartComp(props) {
                 });
               }
              // console.log(JSON.stringify({its:items,uid:store.getState().cart.user}));
-              fetch("http://localhost:23000/purchase", {
+              fetch("https://topshopserver.onrender.com/purchase", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",

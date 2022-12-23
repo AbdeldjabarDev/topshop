@@ -14,7 +14,7 @@ export default function PurchasesComp(props)
     if(initiated == 0 )
     {
        
-        fetch('http://localhost:23000/purchases',{
+        fetch('https://topshopserver.onrender.com/purchases',{
             method:"POST",
             headers:{
             "Content-Type":"application/json"

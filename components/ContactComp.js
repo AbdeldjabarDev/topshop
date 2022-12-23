@@ -25,7 +25,7 @@ export default function ContactComp(props)
      return;
     }
  
- fetch(process.env.BACKEND_URL || "http://localhost:23000" + "/report",{
+ fetch('https://topshopserver.onrender.com/'+ "/report",{
  method:"POST",
  headers:{
      "Content-Type":"application/json",

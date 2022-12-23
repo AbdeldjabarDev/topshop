@@ -19,7 +19,7 @@ export default function DetailsComp()
     {
         let f = async() =>
         {
-            let data = await fetch(process.env.BACKEND_URL || 'http://localhost:23000/' + 'products')
+            let data = await fetch('https://topshopserver.onrender.com/' + 'products')
             .then((res) => res.json())   
             let product;
             let router = useRouter();
