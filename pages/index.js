@@ -17,13 +17,13 @@ export default function Home()
    useEffect(()=>{ 
 setWidth(window.innerWidth)
 if(!store.getState().products.ready)
-fetch(process.env.BACKEND_URL || "http://localhost:23000/"+'products')
+fetch('https://topshopserver.onrender.com/'+'products')
 .then((response)=> response.json())
 .then((data)=>
 {
     dispatch(setReady(true))
     dispatch(addProducts(data.result));
-    setProducts(store.getState().products.value)
+    setProducts(data.result)
 
 })})
 let t = getCookie('topshop_userId');
