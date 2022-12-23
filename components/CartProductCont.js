@@ -12,18 +12,19 @@ export default function CartProductCont(props) {
   )
   else
   return (
-    <div className="w-[90%] ml-auto mr-auto flex mb-[2%] mt-[2%]">
+    <div className="w-full lg:w-[90%] ml-auto mr-auto flex mb-[2%] mt-[2%]">
    <div className="flex">
    <img
-        className="w-[30%] h-full ml-[4%]"
+        className="w-[40%]  h-full ml-[4%]"
         src={props.product.thumbnail}
       ></img>
       <div className="text-lg ml-[2%] mt-[15%]">{props.product.title}</div>
    </div>
-      <div className="border border-red-600">
-        <div className="flex mr-[0.2%] ml-auto gap-3 border mt-[45%] translate-y-[-50%] border-green-200">
+      <div className="mt-[25%] mr-[4%] ml-auto">
+        <div className="flex mr-[0.2%] lg:flex-nowrap flex-wrap ml-auto gap-3  h-fit translate-y-[-50%] border-red-600">
+          <div className="flex gap-3 mt-[10%]">
           <div
-            className="p-3 rounded-full bg-green-600 text-black shadow-md w-10  h-10 pb-3 top-[50%] translate-y-[-50%] "
+            className="p-3 rounded-full relative bg-green-600 text-black shadow-md w-10  h-10 pb-3 top-[50%] translate-y-[-50%] "
             onClick={(e) => {
               if (count < props.product.stock) {
                 dispatch(setProductcount({ p: props.product, c: count + 1 }));
@@ -35,9 +36,9 @@ export default function CartProductCont(props) {
           >
            <Image src="/images/cart_plus.svg" layout="fill"></Image>
           </div>
-          <div>{count}</div>
+          <div className="text-2xl border mb- block h-full">{count}</div>
           <div
-            className="p-3 rounded-full bg-[#f0efef] text-black shadow-md text-lg w-10  h-10 top-[50%] translate-y-[-50%]"
+            className="p-3 relative rounded-full bg-[#f0efef] text-black shadow-md text-lg w-10  h-10 top-[50%] translate-y-[-50%]"
             onClick={(e) => {
               if (count > 1) {
                 dispatch(setProductcount({ p: props.product, c: count - 1 }));
@@ -47,14 +48,15 @@ export default function CartProductCont(props) {
           >
            <Image src="/images/cart_minus.svg" layout="fill"></Image>
           </div>
-          <div className="text-black border border-red-500 bg-transparent hover:bg-red-500 p-3 hover:text-white rounded-lg content-center h-fit top-[50%] translate-y-[-50%]"
+          </div>
+          <button className= "relative mt-auto text-black ml-auto mr-auto border border-red-500 bg-transparent hover:bg-red-500 p-3 hover:text-white rounded-lg content-center h-fit lg:top-[100%]"
           onClick={(e)=>{
             dispatch(removeProduct(props.product));
             setCount(null);
           }}
           >
             Remove
-          </div>
+          </button>
         </div>
       </div>
     </div>

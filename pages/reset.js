@@ -21,12 +21,12 @@ export default function Reset(props)
    let [loading,setLoading] = useState(false);
    let dispatch = useDispatch();
    
-    return(<div className="w-full h-full flex flex-col">
-      <div className="w-[50%]  bg-white h-[50vh] border border-red-600 overflow-hidden ml-auto mr-auto mt-[10%]">
+    return(<div className="w-full h-[100%] border-[3px] border-green-600 bg-black flex flex-col">
+      <div className="w-[90%]  bg-white  border  border-red-600 overflow-hidden ml-auto mr-auto mt-[10%]">
       <div className="flex" style={{width:"400%"}} ref={contRef}>
      <div className="w-full h-full  flex flex-col gap-6 mt-[2%]">
-      <div className="ml-auto mr-auto">Enter your email so that we can send you a verification code</div>
-      <input className="ml-auto mr-auto w-[70%] pl-2 h-[6vh] rounded-md border" placeholder="Email" ref={eRef}></input>
+      <div className="ml-auto mr-auto dark:text-black text-center">Enter your email so that we can send you a verification code</div>
+      <input className="ml-auto mr-auto lg:w-[70%] w-[90%] pl-2 h-[6vh] rounded-md border" placeholder="Email" ref={eRef}></input>
       <button className="p-3 rounded-md shadow-md bg-green-600 text-white ml-auto mr-auto" onClick={(e)=>
       {
         console.log('Email submitted ')

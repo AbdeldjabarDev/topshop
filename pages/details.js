@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import store from "../state/store";
 import Nav from "../components/Nav";
-import Carouseler from "../components/Carouseler";
+import {Carouseler} from "../components/Carouseler";
 import ProductsContainer from "../components/ProductsContainer";
 import RatingBar from "../components/RatingBar";
 import Image from "next/image";
@@ -25,25 +25,25 @@ export default function Details(props) {
   let c = [];
   for (let i of product.images) {
     console.log("image : " + i);
-    c.push(<img className="w-[100%]" src={i}></img>);
+    c.push(<img className="w-[100%]" src={i} key={i}></img>);
   }
   return (
     <div className="flex flex-col w-full h-full">
       <Nav></Nav>
-      <div className="w-[90%] mt-[8%] ml-auto flex flex-col mr-auto  border   -black">
-        <div className="mt-[1%] text-2xl ml-[10%] mb-[1%]">{product.title}</div>
-        <div className="flex w-[80%] gap-10 mb-[10%] h-[60vh] ml-auto mr-auto shadow-lg bg-white    -black">
+      <div className="lg:w-[90%] w-full mt-[8%] ml-auto flex flex-col mr-auto  border   -black">
+        <div className="mt-[15%] lg:mt-[1%] text-2xl ml-0 lg:ml-[10%] mb-[1%]">{product.title}</div>
+        <div className="flex flex-wrap w-full lg:w-[80%] gap-10 mb-[10%] pb-[5%] h-fit lg:h-[60vh] ml-auto mr-auto shadow-lg bg-white    -black">
           <Carouseler
-            children={c}
-            tailwind="w-[40%] relative h-[100%] -[5px]   -green-600"
+           
+            tailwind="lg:w-[40%] w-[100%] relative h-[100%] -[5px]   -green-600"
             controls={[
-              <div className="absolute top-[50%] left-[-15%] text-xl w-12 h-12 text-center   p-4 rounded-full bg-red-300"><Image src="/images/details_nextarrow.svg" layout="fill"></Image></div>,
-              <div className="absolute top-[50%] left-[105%] text-xl w-12 h-12 text-center pb-3  p-4 rounded-full bg-blue-300"><Image src="/images/details_previousarrow.svg" layout="fill"></Image></div>,
+              <div className="absolute lg:top-[50%] top-[105%] lg:left-[-15%] left-[20%] text-xl w-12 h-12 text-center   p-4 rounded-full bg-red-300"><Image src="/images/details_nextarrow.svg" layout="fill"></Image></div>,
+              <div className="absolute lg:top-[50%] top-[105%] lg:left-[105%] left-[45%] text-xl w-12 h-12 text-center pb-3  p-4 rounded-full bg-blue-300"><Image src="/images/details_previousarrow.svg" layout="fill"></Image></div>,
             ]}
-          ></Carouseler>
+          >{c}</Carouseler>
           
 
-        <div className="flex flex-col w-[40%] h-full gap-10 ml-[20%] mt-[10%]">
+        <div className="flex flex-col w-full lg:w-[40%] h-full gap-10 ml-[20%] mt-[10%]">
         <div className=" grid grid-cols-2 -green-600  gap-6">
             {/* {
           Object.keys(product).map((e)=>

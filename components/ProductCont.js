@@ -33,12 +33,12 @@ export default function ProductCont(props) {
       }}
     >
       <div
-        className="absolute z-20 top-0 left-0  translate-y-[100%] bg-white bg-opacity-50 w-full h-full"
+        className="absolute z-20 top-0 left-0  translate-y-[100%] bg-white bg-opacity-50 lg:w-full h-full"
         ref={ref}
         style={{ transition: "transform 0.8s ease" }}
       >
         <button
-          className=" w-[70%] text-xl mt-[40%] border border-black bg-black text-white hover:text-black rounded-full hover:bg-transparent ml-10 mr-auto"
+          className="w-[88%]  lg:w-[70%] text-md lg:text-xl mt-[40%] border border-black bg-black text-white hover:text-black rounded-full hover:bg-transparent ml-3 lg:ml-10 mr-auto"
           onClick={(e) => {
             if (inCart === false) {
               console.log("adding " + props.product.title);
@@ -55,18 +55,20 @@ export default function ProductCont(props) {
         >
           {inCart === true ? "Remove From Cart" : "Add to Cart"}
         </button>
-        <button className=" w-[70%] text-xl mt-[5%] border border-green-600 bg-green-600 text-white hover:text-black rounded-full hover:bg-transparent ml-10 mr-auto">
-          <Link href={"/details?id=" + props.product._id}><span className=" hover:text-green-600">Details</span></Link>
+        <button className=" w-[70%] lg:text-xl text-md mt-[5%] border border-green-600 bg-green-600 text-white hover:text-black rounded-full hover:bg-transparent ml-6 lg:ml-10 mr-auto">
+          <Link href={"/details?id=" + props.product._id}>
+            <span className=" hover:text-green-600 text-md ">Details</span>
+          </Link>
         </button>
       </div>
-      <div className="relative w-60 h-60 flex flex-col bg-[#fefefe]   border">
+      <div className="relative w-[165px] lg:w-60 lg:h-60 h-64 flex flex-col bg-[#fefefe]   border">
         <img
           className="w-[100%] ml-auto mr-auto h-[68%] z-10"
           src={props.product.thumbnail}
         ></img>
         <div className="flex flex-col gap-2">
           <div className="flex text-black w-[100%]">
-            <div className="text-md max-w-[60%]  ml-2 mr-auto">
+            <div className="lg:text-md text-sm text-ellipsis max-w-[60%]  ml-2 mr-auto">
               {props.product.title}
             </div>
             {/* <div className="text-xl  ml-2 mr-auto">{props.product.name}</div> */}
@@ -81,13 +83,13 @@ export default function ProductCont(props) {
               </div>
             </div>
           </div>
-          <div className="flex w-full gap-8 ml-2">
+          <div className="flex w-full mr-2  gap-2 border-black h-fit ml-auto">
             <RatingBar rating={(props.product.rating - 4) * 5}></RatingBar>
-            <div className="-mt-1">
-              <span className="text-green-600 text-sm">
-                {props.product.stock}
+            <div className="text-sm mr-2">
+              <span className="text-green-600 text-xs mb-4  ml-auto">
+                {props.product.stock < 99 ? props.product.stock : "+99"}
               </span>{" "}
-              In Stock
+              <span className="text-xs lg:text-md">In Stock</span>
             </div>
           </div>
         </div>

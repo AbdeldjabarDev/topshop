@@ -21,10 +21,10 @@ export default function Cart(props) {
   
   if (empty)
     return (
-      <div className="w-full h-full flex flex-col">
+      <div className="w-full h-[100vh] flex flex-col">
         <Nav></Nav>
-        <div className="w-[50%] ml-auto mr-auto border border-black rounded-md h-[50vh] flex shadow-lg mt-[15%]">
-          <div className="ml-auto mr-auto mt-[23%] text-xl">
+        <div className="w-[100%] lg:mt-[15%] lg:w-[50%] bg-white ml-auto mr-auto  border-black rounded-md h-[50vh] flex shadow-lg mt-[50%]">
+          <div className="ml-auto mr-auto mt-[23%] dark:text-black text-xl">
             You have no items in your cart
           </div>
         </div>
@@ -33,14 +33,14 @@ export default function Cart(props) {
   return (
     <div className="w-full h-full flex flex-col">
       <Nav></Nav>
-      <div className="w-[50%] ml-auto mr-auto border border-black  rounded-md shadow-lg flex flex-col mt-[10%] gap-4">
-        <div className="flex flex-col ml-[10%]">
+      <div className="lg:w-[50%] w-full ml-auto mr-auto border-none lg:border border-black  rounded-md shadow-none lg:shadow-lg flex flex-col mt-[25%] lg:mt-[10%] gap-4">
+        <div className="flex flex-col ml-0 lg:ml-[10%]">
           {store.getState().cart.value.map((e, i) => {
-            return <CartProductCont product={e} count={i} />;
+            return <CartProductCont product={e} count={i} key={e.id}/>;
           })}
         </div>
 
-        <div className="flex flex-col border border-red-400 ">
+        <div className="flex flex-col  border-red-400 ">
         <div className="ml-auto mr-[10%] mb-[2%]">{"Total : " +totalAmount+ "$"}</div>
           <button
             className="bg-green-600 p-3 rounded-md mb-10 font-semibold ml-auto mr-auto text-white"
