@@ -27,7 +27,7 @@ export default function LoginComp(props) {
   {
    
     let b = { email: email, password_hash: sha1(password) ,phone:phone };
-    fetch(process.env.BACKEND_URL || "http://192.168.128.81:23000"+ "/accounts/create",{
+    fetch('https://topshopserver.onrender.com/'+ "accounts/create",{
      method:'POST',
      body:JSON.stringify(b),
      headers : {
@@ -54,7 +54,7 @@ export default function LoginComp(props) {
   }
   let attemptLogin = (email, password) => {
     const data = { email: email, password_hash: sha1(password) };
-    fetch(process.env.BACKEND_URL || "http://192.168.128.81:23000/"  +"login", {
+    fetch('https://topshopserver.onrender.com/' +"login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
