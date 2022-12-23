@@ -5,6 +5,7 @@ import { useState } from "react";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/router";
 let initiated = 0,children = [];
+let fetcher = (...args) => fetch(...args).then((res)=> res.json());
 export default function PurchasesComp(props)
 { 
     let router = useRouter();

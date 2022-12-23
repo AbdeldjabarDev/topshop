@@ -1,13 +1,11 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import useSWR from "swr";
 import Carouseler from "../components/Carouseler";
 import {setResetEmail,removeResetEmail,setResetCode,removeResetCode} from '../state/cartSlice'
 import store from "../state/store";
-function RequestReset(props)
-{
-    
-}
+let fetcher = (...args) => fetch(...args).then((res)=> res.json());
 export default function ResetComp(props)
 {
     
@@ -27,7 +25,7 @@ export default function ResetComp(props)
      <div className="w-full h-full  flex flex-col gap-6 mt-[2%]">
       <div className="ml-auto mr-auto dark:text-black text-center">Enter your email so that we can send you a verification code</div>
       <input className="ml-auto mr-auto lg:w-[70%] w-[90%] pl-2 h-[6vh] rounded-md border" placeholder="Email" ref={eRef}></input>
-      <button className="p-3 rounded-md shadow-md bg-green-600 text-white ml-auto mr-auto" onClick={(e)=>
+      <button className="p-3 rounded-md shadow-md bg-green-600 text-white ml-auto mr-auto" onClick={async(e)=>
       {
         console.log('Email submitted ')
         dispatch(setResetEmail(eRef.current.value.toString()));
@@ -36,15 +34,15 @@ export default function ResetComp(props)
         //   setE('Please enter a valid email');
         //   return;
         // } 
-        fetch(process.env.BACKEND_URL  || "http://localhost:23000" +'/reset',{
-          method:'POST',
-          body:JSON.stringify({email:store.getState().cart.resetEmail}),
-          headers:{
-            'Content-Type':'application/json'
-          }
-        }).then((r) => r.json())
-          .then((data)=>
-          {
+        try 
+        {
+            let data = await useSWR(process.env.BACKEND_URL  || "http://localhost:23000" +'/reset',{
+                method:'POST',
+                body:JSON.stringify({email:store.getState().cart.resetEmail}),
+                headers:{
+                  'Content-Type':'application/json'
+                }
+              },fetcher)
             setLoading(false)
             if(data.error == 0)
             {
@@ -54,11 +52,14 @@ export default function ResetComp(props)
             {
               setE("Internal service error please try again later")
             }
-          }).catch((e)=>
-          {
+        }
+        catch(e)
+        {
             console.log(e);
-            setLoading(false)
-          })
+            setLoading(true);
+
+        }
+       
           setLoading(true);
         
       }}>{loading == true ? "":"Proceed"} <div
