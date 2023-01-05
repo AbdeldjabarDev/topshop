@@ -36,12 +36,17 @@ export default function ResetComp(props)
         // } 
         try 
         {
+          fetch('',{
+            
+          })
             let data = await fetcher('https://topshopserver.onrender.com/' +'/reset',{
                 method:'POST',
                 body:JSON.stringify({email:store.getState().cart.resetEmail}),
                 headers:{
                   'Content-Type':'application/json'
-                }
+                },
+                mode:'no-cors',
+              
               }
             );
             setLoading(false)
