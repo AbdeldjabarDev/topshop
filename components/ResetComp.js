@@ -39,7 +39,7 @@ export default function ResetComp(props)
           fetch('',{
             
           })
-            let data = await fetcher('https://topshopserver.onrender.com/' +'/reset',{
+            let data = await fetcher('https://topshopserver.onrender.com/' +'reset',{
                 method:'POST',
                 body:JSON.stringify({email:store.getState().cart.resetEmail}),
                 headers:{
