@@ -15,6 +15,7 @@ export default function DetailsComp()
     let [c,setC] = useState([]);
     let [products,setProducts] = useState([]);
     let [p,setP] = useState({title:'',brand:'',price:'',discountPercentage:'',stock:'',rating:''});
+    let router = useRouter();
     useEffect(()=>
     {
         let f = async() =>
@@ -22,7 +23,7 @@ export default function DetailsComp()
             let data = await fetch('https://topshopserver.onrender.com/' + 'products')
             .then((res) => res.json())   
             let product;
-            let router = useRouter();
+           
         let id = router.query.id;
         console.log(
             "number of products  : " + data.length

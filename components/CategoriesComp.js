@@ -6,13 +6,14 @@ import useSWR from "swr";
 import { useEffect } from "react";
 import { useState } from "react";
 let fetcher = (...args)=> fetch(...args).then((res)=> res.json());
-export default function CategoriesComp({query})
+export default function CategoriesComp()
 {
     let [q,setQ] = useState('');
+    let query = useRouter().query;
     let [products,setProducts] = useState([]);
     useEffect(()=>
     {
-        let query = useRouter().query;
+       
    setProducts(store.getState().products.value.filter((e)=> {return e.category == query.category}));
    setQ(query)
     },[q])
