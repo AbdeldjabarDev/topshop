@@ -29,22 +29,21 @@ export const slice =  createSlice({
                 if( i != -1 )
                 {
                    let c = state.categories.at(i);
-                    console.log('increasing ' + c + 'from '+  c.count +'to' + c.count+1);
+                
                     c.count += 1;
-                    console.log('done increasing ' + state.categories.at(i).name + 'to ' + state.categories.at(i).count)
+                  
                  state.categories[i] = c;
                 }
                 else
                 {
-                    console.log('found category : ' + e.category.toString());
+                   
                     state.categories.push({name : e.category.toString(),count : 1});
                     
         
                 }
                 //console.log('p slice' + e._id)
             })
-            console.log('we have ' + state.categories.length + 'categories')
-            console.log('smartphones is at index : ' + state.categories.indexOf('smartphones'));
+           
             // state.value.forEach((e)=>
             // {
             //     console.log(e)
