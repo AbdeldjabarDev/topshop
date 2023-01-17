@@ -17,7 +17,7 @@ export default function ResetComp(props)
    let [loading,setLoading] = useState(false);
    let dispatch = useDispatch();
     return(<div className="w-full h-[100%] flex flex-col">
-      <div className="w-[65%] lg:w-[40%]  bg-white rounded-md border overflow-hidden ml-auto mr-auto mt-[10%]">
+      <div className="w-full md:w-[75%] lg:w-[40%]  bg-white rounded-md border overflow-hidden ml-auto mr-auto mt-[10%]">
       <div className="flex mt-10 " style={{width:"400%"}} ref={contRef}>
       <div className="w-full h-full  flex flex-col gap-6 mt-[2%]">
       <div className="ml-auto mr-auto dark:text-black text-center">Enter your email so that we can send you a verification code</div>
@@ -74,7 +74,7 @@ export default function ResetComp(props)
       <button className="p-3 rounded-md shadow-md bg-green-600 text-white ml-auto mr-auto" onClick={(e)=>
       {
         dispatch(setResetCode(cRef.current.value.toString()));
-        fetch('https://topshopserver.onrender.com/'+'/reset/verify',{
+        fetch('https://topshopserver.onrender.com/'+'reset/verify',{
           method:'POST',
           body:JSON.stringify({email:store.getState().cart.resetEmail,code:store.getState().cart.resetCode}),
           headers:{

@@ -12,7 +12,6 @@ function findInArray(arr, p) {
   }
   return -1;
 }
-
 export default function ProductCont(props) {
   let dispatch = useDispatch();
   let ref = useRef();
@@ -22,6 +21,14 @@ export default function ProductCont(props) {
       : true
   );
   let x = 0;
+  if(props.e)
+{
+  console.log('rendering empty product container')
+  return(<div className="flex w-[165px] gap-2 lg:w-60 lg:h-60 h-64 flex-col border border-black">
+  <div className="h-48 w-full bg-slate-400 animate-[beat 1s ease-in infinite]" ></div>
+  <div className="h-10 w-full bg-slate-400 animate-[beat 1s ease-in infinite]"></div>
+  </div>)
+}
   return (
     <div
       className="relative  w-fit overflow-hidden rounded-md shadow-md h-fit "
@@ -48,7 +55,6 @@ export default function ProductCont(props) {
               return;
             }
             console.log("removing " + props.product.title);
-
             dispatch(removeProduct(props.product));
             setInCart(false);
           }}

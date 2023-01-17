@@ -3,13 +3,10 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setToken, setUser, setLoggedIn } from "../state/cartSlice";
-import { getCookie,setCookie } from "cookies-next";
-import store from "../state/store";
+import { setCookie } from "cookies-next";
 import sha1 from "../helpers/sha1";
-let fetcher = (...args) => fetch(...args).then((res)=> res.json());
 export default function LoginComp(props) {
   let dispatch = useDispatch();
-
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   // let [phone,setPhone] = useState('');
@@ -108,19 +105,16 @@ export default function LoginComp(props) {
   //   window.confirm('You are already logged in log out then try again');
   //   router.replace('/');
   // }
-  return (<div
-      className="relative w-full h-full flex bg-[#f1f1f1]"
-      style={{ transition: "all 0.8s ease" }}
-    >
-      <div className="absolute  mb-[5%] rounded-lg shadow-lg top-[50%] left-[50%] translate-x-[-50%] mt-[20%] lg:mt-[5%] lg:w-[40%] w-[90%] bg-white">
+  return (
+      <div className="border ml-auto pb-5 mr-auto  mb-[5%]  shadow-lg mt-[25%] lg:mt-[10%] md:w-[70%] lg:w-[40%] w-[100%] bg-white">
         <div
-          className="flex flex-col gap-6 h-fit  mt-[3%]"
+          className="flex flex-col gap-10 h-fit  mt-[3%]"
           style={{ transition: "height 0.8s ease" }}
         >
           <div className="text-3xl text-black  font-sans ml-auto mr-auto mb-[2%]">
             {loginState == true ? "Login" : "Sign up"}
           </div>
-         <form className="flex flex-col w-full ml-auto mr-auto"  onSubmit={(e)=>
+         <form className="flex flex-col gap-5 md:gap-4 pb-3 w-full ml-auto mr-auto"  onSubmit={(e)=>
         {
           e.preventDefault();
         
@@ -150,7 +144,7 @@ attempSignUp(email,password)
         
         }}>
          <input
-            className=" w-[90%] lg:w-[80%] pl-3 ml-auto mr-auto h-[7vh]  rounded-md border border-slate-400 mb-[2%]"
+            className=" w-[90%] lg:w-[80%] pl-3 ml-auto mr-auto p-4  rounded-md border border-slate-400 mb-[2%]"
             placeholder="Email"
             type="email"
             id=""
@@ -162,7 +156,7 @@ attempSignUp(email,password)
            <div className="text-red-600 ml-[12.5%]">{emailError}</div>
 
           <input
-            className="w-[90%] lg:w-[80%] pl-3 ml-auto mr-auto h-[7vh]  rounded-md border border-slate-400 mb-[2%]"
+            className="w-[90%] lg:w-[80%] pl-3 ml-auto mr-auto p-4  rounded-md border border-slate-400 mb-[2%]"
             placeholder="Password"
             type="password"
             id=""
@@ -233,6 +227,6 @@ attempSignUp(email,password)
          <div className="ml-[12.5%] text-red-500">{generalError}</div>
         </div>
       </div>
-    </div>
+    
   );
 }

@@ -63,12 +63,12 @@ export const Carouseler = ({controls,children})=>
       {setItemIndex(0);return};
       if(itemIndex == children.length -1 )
       {return} 
-       setItemIndex(itemIndex+1)}}>{}</div>
+       setItemIndex(itemIndex+1)}}>{controls[0]}</div>
   <div className="z-20" style={{display: itemIndex == 0 ? 'none':'block'}} onClick={(e)=>{
       console.log("control clicked : left ");
       if(itemIndex < 0)
       {setItemIndex(0);return};
-      setItemIndex(itemIndex-1)}}>{}</div>
+      setItemIndex(itemIndex-1)}}>{controls[1]}</div>
         </div>
         <div className="flex flex-col w-full h-full overflow-hidden" >
         <div className="flex  h-full "  ref={conRef} style={{width:children.length*100 +"%",transition:"transform .5s ease-out",transform:`translateX(-${itemIndex/children.length*100}%)`}}>

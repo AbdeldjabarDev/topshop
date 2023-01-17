@@ -24,7 +24,7 @@ export default function Nav(props) {
   let accountRef = useRef();
   let [closed, setClosed] = useState(true);
   return (
-    <div className="fixed h-[12.5%] md:h-[10.7%] mb-[15%] text-xl w-[100vw] z-20 flex gap-5 shadow-sm bg-white">
+    <div className="fixed h-[12.5%] md:h-[10.7%] mb-[15%] text-xl w-[100vw] z-20 flex gap-5 shadow-sm bg-white cursor-default">
       <div
         className="absolute md:w-[30%] lg:[20%] w-[80%]  overflow-hidden  shadow-md h-[100vh] top-0 left-0 bg-white text-black flex flex-col translate-x-[-100%] "
         ref={navRef}
@@ -106,15 +106,21 @@ export default function Nav(props) {
           <div
             className="flex  pt-4 pb-4 content-center hover:bg-green-50"
             onClick={(e) => {
-              deleteAllCookies();
-              dispatch(setLoggedIn(false));
+              if(store.getState().cart.loggedIn == true)
+              {
+                deleteAllCookies();
+                dispatch(setLoggedIn(false));
+              }
+              router.replace('/login')
+             
             }}
+
           >
             <img
               className="w-8 h-8 ml-2 mr-2"
-              src="/images/logout-svgrepo-com.svg"
+              src={store.getState().cart.loggedIn == true ? "/images/logout-svgrepo-com.svg":"/images/account-svgrepo-com.svg"}
             ></img>
-            <div>Log out</div>
+            <div>{store.getState().cart.loggedIn == true ? 'Log out':'Login'}</div>
           </div>
         </div>
         <div

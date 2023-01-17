@@ -33,7 +33,7 @@ export default function CartComp(props) {
   return (
     <div className="w-full h-full flex flex-col">
       <Nav></Nav>
-      <div className="lg:w-[50%] w-full ml-auto mr-auto border-none lg:border border-black  rounded-md shadow-none lg:shadow-lg flex flex-col mt-[25%] lg:mt-[10%] gap-4">
+      <div className="lg:w-[50%] w-full ml-auto mr-auto border-none bg-white lg:border border-black  rounded-md shadow-none lg:shadow-lg flex flex-col mt-[25%] lg:mt-[10%] gap-4">
         <div className="flex flex-col ml-0 lg:ml-[10%]">
           {store.getState().cart.value.map((e, i) => {
             return <CartProductCont product={e} count={i} key={e.id}/>;
