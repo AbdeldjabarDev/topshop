@@ -114,7 +114,7 @@ export default function Nav(props) {
               router.replace('/login')
              
             }}
-
+          style={{display:store.getState().cart.loggedIn == true ? 'block':'none'}}
           >
             <img
               className="w-8 h-8 ml-2 mr-2"
