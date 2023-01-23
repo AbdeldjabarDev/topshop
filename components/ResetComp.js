@@ -21,7 +21,7 @@ export default function ResetComp(props)
       <div className="flex mt-10 " style={{width:"400%"}} ref={contRef}>
       <div className="w-full h-full  flex flex-col gap-6 mt-[2%]">
       <div className="ml-auto mr-auto dark:text-black text-center">Enter your email so that we can send you a verification code</div>
-      <input className="ml-auto mr-auto lg:w-[70%] w-[90%] pl-2 h-[6vh] rounded-md border" placeholder="Email" ref={eRef}></input>
+      <input className="ml-auto mr-auto lg:w-[70%] w-[90%] pl-2 h-[6vh] rounded-md border" placeholder="Email" type="email"ref={eRef}></input>
       <button className="p-3 mt-4 rounded-md shadow-md bg-green-600 text-white ml-auto mr-auto" onClick={async(e)=>
       {
         console.log('Email submitted ')

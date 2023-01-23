@@ -24,9 +24,9 @@ export default function ProductCont(props) {
   if(props.e)
 {
   console.log('rendering empty product container')
-  return(<div className="flex w-[165px] gap-2 lg:w-60 lg:h-60 h-64 flex-col border border-black">
-  <div className="h-48 w-full bg-slate-400 animate-[beat 1s ease-in infinite]" ></div>
-  <div className="h-10 w-full bg-slate-400 animate-[beat 1s ease-in infinite]"></div>
+  return(<div className="flex w-[165px] gap-2 lg:w-60 lg:h-60 h-64 flex-col border ">
+  <div className="h-48 w-full anim_beat" ></div>
+  <div className="h-10 w-full anim_beat"></div>
   </div>)
 }
   return (

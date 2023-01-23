@@ -35,12 +35,14 @@ export default function LoginComp(props) {
     {
       if(data.error == 0)
       {
+      setLoading(false)
         dispatch(setUser(data.userId));
         dispatch(setToken(data.token));
         dispatch(setLoggedIn(true));
       }
       else if(data.error == 2)
           {
+      setLoading(false)
            setPasswordError('');
            setEmailError('');
            setGeneralError('Something went wrong while creating your account please try again later')
@@ -48,6 +50,12 @@ export default function LoginComp(props) {
       
      
     })
+    .catch((e)=>
+    {
+      setLoading(false)
+      setGeneralError(e.toString());
+    })
+    setLoading(true);
   }
   let attemptLogin = (email, password) => {
     const data = { email: email, password_hash: sha1(password) };
@@ -120,41 +128,29 @@ export default function LoginComp(props) {
         
           if(loginState == true)
           {
-//             // if(email.match(/([a-zA-Z0-9-])+@([a-z])+(\.)([a-z])+/g) ==  null )
-//             // {
-//             //     setEmailError('Invalid email');
-//             //     setGeneralError('');
-//             //     setPasswordError('');
-//             //     setLoading(false);
-//             //     return;
-//             // }
               attemptLogin(email, password);
-              // router.replace('/')
               setEmailError('');
               setPasswordError(''); 
               setGeneralError('');
-              
-
           }
           else
-          {
-                     
+          {                     
 attempSignUp(email,password)
-          }
-        
+setEmailError('');
+setPasswordError(''); 
+setGeneralError('');
+          }        
         }}>
          <input
             className=" w-[90%] lg:w-[80%] pl-3 ml-auto mr-auto p-4  rounded-md border border-slate-400 mb-[2%]"
             placeholder="Email"
             type="email"
             id=""
-            onChange={(e) => {
-             
+            onChange={(e) => {  
               setEmail(e.target.value);
             }}
           ></input>
            <div className="text-red-600 ml-[12.5%]">{emailError}</div>
-
           <input
             className="w-[90%] lg:w-[80%] pl-3 ml-auto mr-auto p-4  rounded-md border border-slate-400 mb-[2%]"
             placeholder="Password"
@@ -163,6 +159,20 @@ attempSignUp(email,password)
             onChange={(e) => {
               setPassword(e.target.value);
             
+            }}
+          ></input>
+           <input
+            className={" w-[90%] lg:w-[80%] transition-[display] pl-3 ml-auto mr-auto p-4 rounded-md border border-slate-400 mb-[2%]"}
+            placeholder="Confirm Password"
+            type="password"
+            id=""
+            style={{display: loginState == true ? 'none':'inline'}}
+            onChange={(e) => {
+              if(e.target.value != password)
+              {
+                setPasswordError("Passwords don't match");
+              }
+              
             }}
           ></input>
            <div className="text-red-600 ml-[12.5%]">{passwordError}</div>
@@ -188,7 +198,7 @@ attempSignUp(email,password)
           
           <button type="submit"
            
-            className="ml-auto mr-auto lg:w-[20%] w-[40%] text-lg bg-green-600 text-white p-3 rounded-md"
+            className="ml-auto mr-auto lg:w-[22%] md:w-[28%] w-[40%] text-lg bg-green-600 text-white p-3 rounded-md"
           >
             {loading == false ? (loginState == true ? "Login" : "Sign up") : ""}
             <div

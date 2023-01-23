@@ -17,17 +17,33 @@ a {
 
 * {
   box-sizing: border-box;
- 
+
+  
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+
   body {
     color: white;
     background: black;
  
   }
+}
+@keyframes beat
+{
+    0% {background-color: rgb(213, 228, 250);}
+    25% {background-color: rgb(189, 195, 211);}
+    50% {background-color: rgb(155, 166, 176);}
+    75% {background-color: rgb(185, 196, 212);}
+    100% {background-color: rgb(213, 228, 250);}
+    
+}
+.anim_beat
+{    
+animation-name: beat;
+animation-timing-function: ease-in;
+animation-duration: 2s;
+animation-iteration-count: infinite;
+animation-delay: 0.3s;
 }
 
