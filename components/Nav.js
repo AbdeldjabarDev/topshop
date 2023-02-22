@@ -24,14 +24,14 @@ export default function Nav(props) {
   let accountRef = useRef();
   let [closed, setClosed] = useState(true);
   return (
-    <div className="fixed h-[12.5%] md:h-[10.7%] mb-[15%] text-xl w-[100vw] z-20 flex gap-5 shadow-sm bg-white cursor-default">
+    <div className="fixed h-[70px]  md:h-[70px] mb-[15%] text-xl w-[100vw] z-20 flex gap-5 shadow-sm bg-white cursor-default">
       <div
-        className="absolute md:w-[30%] lg:[20%] w-[80%]  overflow-hidden  shadow-md h-[100vh] top-0 left-0 bg-white text-black flex flex-col translate-x-[-100%] "
+        className="absolute md:w-[30%] lg:[20%] w-[80%]  overflow-hidden  shadow-md h-[100vh]  top-0 left-0 bg-white text-black flex flex-col translate-x-[-100%] "
         ref={navRef}
         style={{ transition: "transform 0.8s ease" }}
       >
         <div
-          className="flex mt-[10%] pt-4 pb-4 content-center bg-white hover:bg-green-50"
+          className="flex  mt-[10%] pt-4 pb-4 content-center bg-white hover:bg-green-50"
           onClick={(e) => {
             if (closed === true) {
               categoriesRef.current.style.transitionProperty = "height";
@@ -49,12 +49,12 @@ export default function Nav(props) {
         >
           <img
             src="/images/menu-side-nav-svgrepo-com.svg"
-            className="w-8 h-8 ml-2 mr-2"
+            className="w-8 h-8 ml-4 mr-2"
           ></img>
           <div>Categories </div>
         </div>
         <div
-          className="flex flex-col gap-4 h-0 text-black overflow-hidden overflow-y-auto"
+          className="ml-4 flex flex-col gap-4 h-0 text-black overflow-hidden overflow-y-auto"
           ref={categoriesRef}
           style={{ transition: "height 0.8s ease" }}
         >
@@ -62,6 +62,7 @@ export default function Nav(props) {
             return (
               <div key={e.name}
                 onClick={(ee) => {
+                  window.dispatchEvent(new Event('category_selected'));
                   router.replace("/categories?category=" + e.name);
                 }}
               >
@@ -76,7 +77,7 @@ export default function Nav(props) {
             navRef.current.style.transform = "translateX(-100%)";
           }}
         >
-          X
+          x
         </div>
         <div className="flex flex-col">
           <div
@@ -86,7 +87,7 @@ export default function Nav(props) {
             }}
           >
             <img
-              className="w-8 h-8 ml-2 mr-2"
+              className="w-8 h-8 ml-4 mr-2"
               src="/images/stacked-print-products-svgrepo-com.svg"
             ></img>
             <div>My Purchases</div>
@@ -98,7 +99,7 @@ export default function Nav(props) {
             }}
           >
             <img
-              className="w-8 h-8 ml-2 mr-2"
+              className="w-8 h-8 ml-4 mr-2"
               src="/images/contact-form-svgrepo-com.svg"
             ></img>
             <div>Contact us</div>
@@ -133,29 +134,29 @@ export default function Nav(props) {
             className="w-7 ml-2 mr-2 h-7  "
             src="/images/cart-svgrepo-com.svg"
             ref={cartRef}
-          ></img>{" "}
+          ></img>
           <div>My Cart</div>
         </div>
       </div>
-      <div className="flex gap-3">
+      <div className="flex gap-3 -z-20 ">
         <img
           src="/images/menu-svgrepo-com.svg"
-          className="w-8 h-8 ml-4 mt-4 "
+          className="w-7 h-7  ml-4  translate-y-[80%]"
           onClick={(e) => {
             navRef.current.style.transform = "translateX(0%)";
           }}
         ></img>
         <img
-          className="w-14 h-14 ml-2 mr-auto mt-2"
+          className="w-14 h-12 ml-2 mr-auto  translate-y-[20%]"
           src="/images/logo.svg"
           onClick={(e) => {
             router.replace("/");
           }}
         ></img>
       </div>
-      <div className="flex gap-6  border-green-600 lg:mr-[5%] mr-0 ml-[20%] lg:ml-auto mt-[2vh]">
+      <div className="flex pt-4 gap-6  border-green-600 lg:mr-[5%] mr-0 ml-[20%] lg:ml-auto ">
         <input
-          className="w-[50%] lg:w-[50%] h-[70%] mb-[0.5%] bg-[#f8f8f8] focus:bg-white rounded-full border border-slate-300 bg-opacity-90 pl-6 text-black"
+          className="w-[50%] lg:w-[50%] h-[40px] bg-[#f6f6f6] focus:bg-white rounded-full border border-slate-300 pl-6 text-black"
           ref={searchRef}
           onFocus={(e) => {
             e.target.style.width = "80%";
@@ -163,12 +164,12 @@ export default function Nav(props) {
           }}
           onBlur={(e) => {
             e.target.style.width = "50%";
-          }}
+          }}  
         ></input>
-        <div className="flex mt-[1.8%]  pr-0 mr-0 border-black gap-4">
+        <div className="flex border-black gap-4">
           <img
-            className="w-7 h-7"
-            src="/images/search-svgrepo-com.svg"
+            className="w-7 h-7  hover:shadow-md"
+            src="/images/search.svg"
             onClick={(e) => {
               if (searchRef.current.value.toString() !== "") {
                 dispatch(setQuery(searchRef.current.value));
@@ -177,7 +178,7 @@ export default function Nav(props) {
             }}
           ></img>
           <img
-            className="w-7 h-7 hidden lg:inline"
+            className="w-7 h-7 hidden lg:inline  hover:shadow-md"
             src="/images/cart-svgrepo-com.svg"
             ref={cartRef}
             onClick={(e) => {
@@ -186,7 +187,7 @@ export default function Nav(props) {
           ></img>
           <img
             className="w-7 h-7 hidden lg:inline"
-            src="/images/account-svgrepo-com.svg"
+            src="/images/account.svg"
             ref={accountRef}
             onClick={(e) => {
               if (!store.getState().cart.loggedIn) {

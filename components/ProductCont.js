@@ -15,6 +15,7 @@ function findInArray(arr, p) {
 export default function ProductCont(props) {
   let dispatch = useDispatch();
   let ref = useRef();
+  let not_loggedInRef = useRef();
   let [inCart, setInCart] = useState(
     findInArray(store.getState().cart.value, props.product) === -1
       ? false
@@ -23,8 +24,15 @@ export default function ProductCont(props) {
   let x = 0;
   if(props.e)
 {
-  console.log('rendering empty product container')
+ 
   return(<div className="flex w-[165px] gap-2 lg:w-60 lg:h-60 h-64 flex-col border ">
+    <div className="absolute top-[80px] left-[10vw] hidden h-[40px] w-fit  bg-white shadow-md" ref={not_loggedInRef}>
+      <div className="ml-2">You need to login first to be able to add items to your cart</div>
+      <div className="justify-end" onClick={(e)=>
+      {
+        not_loggedInRef.current.style.display = "none";
+      }}>x</div>
+    </div>
   <div className="h-48 w-full anim_beat" ></div>
   <div className="h-10 w-full anim_beat"></div>
   </div>)
@@ -47,16 +55,24 @@ export default function ProductCont(props) {
         <button
           className="w-[88%]  lg:w-[70%] text-md lg:text-xl mt-[40%] border border-black bg-black text-white hover:text-black rounded-full hover:bg-transparent ml-3 lg:ml-10 mr-auto"
           onClick={(e) => {
-            if (inCart === false) {
-              console.log("adding " + props.product.title);
-              // store.getState().cart.value.delete(props.product._id);
-              dispatch(addProduct(props.product));
-              setInCart(true);
-              return;
+            if(store.getState().cart.loggedIn == true)
+            {
+              if (inCart === false) {
+                console.log("adding " + props.product.title);
+                // store.getState().cart.value.delete(props.product._id);
+                dispatch(addProduct(props.product));
+                setInCart(true);
+                return;
+              }
+              console.log("removing " + props.product.title);
+              dispatch(removeProduct(props.product));
+              setInCart(false);
             }
-            console.log("removing " + props.product.title);
-            dispatch(removeProduct(props.product));
-            setInCart(false);
+            else
+            {
+              not_loggedInRef.current.style.display = "flex";
+            }
+            
           }}
         >
           {inCart === true ? "Remove From Cart" : "Add to Cart"}

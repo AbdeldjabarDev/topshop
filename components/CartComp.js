@@ -21,14 +21,15 @@ export default function CartComp(props) {
   
   if (empty)
     return (
-      <div className="w-full h-[100vh] flex flex-col">
-        <Nav></Nav>
-        <div className="w-[100%] lg:mt-[15%] lg:w-[50%] bg-white ml-auto mr-auto  border-black rounded-md h-[50vh] flex shadow-lg mt-[50%]">
-          <div className="ml-auto mr-auto mt-[23%] dark:text-black text-xl">
-            You have no items in your cart
-          </div>
-        </div>
+      <>
+         <Nav></Nav>
+      <div className="w-full h-[100vh] flex justify-around flex-col">
+       
+        <img className="ml-auto mr-auto translate-y-[20%] w-[300px] h-[300px]" src="/images/empty_cart.svg"></img>
+        <div className="ml-auto mr-auto text-xl ">You have no items in your cart</div>
       </div>
+      </>
+   
     );
   return (
     <div className="w-full h-full flex flex-col">

@@ -144,8 +144,7 @@ setGeneralError('');
          <input
             className=" w-[90%] lg:w-[80%] pl-3 ml-auto mr-auto p-4  rounded-md border border-slate-400 mb-[2%]"
             placeholder="Email"
-            type="email"
-            id=""
+            type="email"           
             onChange={(e) => {  
               setEmail(e.target.value);
             }}
@@ -155,17 +154,15 @@ setGeneralError('');
             className="w-[90%] lg:w-[80%] pl-3 ml-auto mr-auto p-4  rounded-md border border-slate-400 mb-[2%]"
             placeholder="Password"
             type="password"
-            id=""
             onChange={(e) => {
               setPassword(e.target.value);
             
             }}
           ></input>
            <input
-            className={" w-[90%] lg:w-[80%] transition-[display] pl-3 ml-auto mr-auto p-4 rounded-md border border-slate-400 mb-[2%]"}
+            className={" w-[90%] lg:w-[80%]  pl-3 ml-auto mr-auto p-4 rounded-md border border-slate-400 mb-[2%]"}
             placeholder="Confirm Password"
             type="password"
-            id=""
             style={{display: loginState == true ? 'none':'inline'}}
             onChange={(e) => {
               if(e.target.value != password)
