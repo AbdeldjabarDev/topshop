@@ -8,26 +8,28 @@ import { getCookie } from 'cookies-next'
 import store from '../state/store'
 import ProductsContainer from '../components/ProductsContainer'
 import CategoryCont from '../components/CategoryCont'
-let initiated = false;
-async function fetchData(setter)
+let initiated = 0;
+async function fetchData(errorSetter)
 {
-
-  if(!store.getState().products.ready)
+  if(initiated == false)
 {
   let response = null ;
   try
   {
    response =  await fetch('https://topshopserver.onrender.com/'+'products');
     let jsonResponse =  await response.json();
-    store.dispatch(addProducts(jsonResponse));
+    store.dispatch(addProducts(jsonResponse.result));
+    // productsSetter(jsonResponse);
+    console.log('got products  : ' + jsonResponse);
     store.dispatch(setReady(true));
+    initiated = true;
   }
   catch(e)
   {
   switch (response?.status)
   {
     case 500:
-      setter('We are facing some issues right now.Please come back later');
+      errorSetter('We are facing some issues right now.Please come back later');
       break;
     
   }  
@@ -49,12 +51,27 @@ export default function Home()
   
     let dispatch = useDispatch();
     let [wwidth,setWidth] = useState(0);
+    // let [products,setProducts] = useState([])
+    
     let products = useSelector((state) => state.products.value)
     let [error,setError] = useState('');
     let errorRef = useRef();
    useEffect(()=>{ 
 setWidth(window.innerWidth)
-fetchData(setError);
+// fetchData(setError);
+if(store.getState().products.value.length == 0)
+fetch('https://topshopserver.onrender.com/products')
+.then((res) => res.json())
+.then((data)=>
+{
+  console.log('adding products ');
+  store.dispatch(addProducts(data.result));
+  initiated++;
+})
+.catch((e)=>
+{
+  setError('We are facing issues now : ' + e.toString())
+})
 
 })
 let t = getCookie('topshop_userId');
@@ -85,7 +102,7 @@ if(t != undefined && u != undefined)
     <div className='text-4xl text-black'>{e.id + " name : " + e.name}</div>
    })}
     </div> */}
-    <div className='absolute top-0 md:w-[100vw] left-[0vw] md:left-[10vw] lg:left-[25vw] lg:w-[50vw]  shadow-md h-[60px] bg-white' style={{display:error != '' ? 'flex':'none',transition:'transform 1s linear'}} ref={errorRef}>
+    <div className='absolute top-0 md:w-[100vw] left-[0vw] md:left-[10vw] lg:left-[25vw] lg:w-[50vw] flex  shadow-md h-[60px] bg-white' style={{opacity:error != '' ? '1':'0',transition:'transform 1s linear'}} ref={errorRef}>
     <div className='w-full  h-[60px] text-red-600 pl-2  pr-2 pt-4  ' >{error}</div>
     <div className='mr-6 ml-auto translate-y-[25%] text-black' onClick={(e)=>
     {

@@ -1,7 +1,7 @@
 import store from "../state/store";
 import Nav from "../components/Nav";
 import CartProductCont from "../components/CartProductCont";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import { Router, useRouter } from "next/router";
 import { getCookie } from "cookies-next";
 export default function CartComp(props) {
@@ -9,6 +9,7 @@ export default function CartComp(props) {
   let [empty, setEmpty] = useState(false);
   let [loading,setLoading] = useState(false);
   let [totalAmount,setTotalAmount] = useState(store.getState().cart.total);
+  let notloggedInRef = useRef();
   useEffect(() => {
     if (store.getState().cart.value.length == 0) setEmpty(true);
     return store.subscribe(() => {
@@ -34,6 +35,13 @@ export default function CartComp(props) {
   return (
     <div className="w-full h-full flex flex-col">
       <Nav></Nav>
+      <div className="absolute top-[80px] left-[10vw] hidden h-[40px] w-fit  bg-white shadow-md" ref={notloggedInRef}>
+      <div className="ml-2">You need to login first to confirm the purchase</div>
+      <div className="justify-end" onClick={(e)=>
+      {
+        notloggedInRef.current.style.display = "none";
+      }}>x</div>
+    </div>
       <div className="lg:w-[50%] w-full ml-auto mr-auto border-none bg-white lg:border border-black  rounded-md shadow-none lg:shadow-lg flex flex-col mt-[25%] lg:mt-[10%] gap-4">
         <div className="flex flex-col ml-0 lg:ml-[10%]">
           {store.getState().cart.value.map((e, i) => {
@@ -46,6 +54,11 @@ export default function CartComp(props) {
           <button
             className="bg-green-600 p-3 rounded-md mb-10 font-semibold ml-auto mr-auto text-white"
             onClick={(e) => {
+              if(store.getState().cart.loggedIn == false)
+              {
+                notloggedInRef.current.style.display = "flex";
+                return;
+              }
               setLoading(true);
               let items = [];
               let current_products = store.getState().cart.value;
@@ -77,7 +90,7 @@ export default function CartComp(props) {
                 router.push(data.url)
 
               })
-              .catch((err) => console.log(err));
+              .catch((err) => {console.log(err);setLoading(false)});
             }}
           >
             

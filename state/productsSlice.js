@@ -15,16 +15,22 @@ export const slice =  createSlice({
         value: [],
         ready:false,
        categories : [],
+       selectedCategory:'',
     },
     reducers :
-    {     
+    {   
+        setSelectedCategory : (state,action) =>
+        {
+state.selectedCategory = action.payload;
+        } , 
         addProducts : (state,action) => {
             action.payload.forEach((e)=>
             {
+                
                 state.value.push(e);
                 // console.log('category object keys : ' + Object.keys(e.category));
-               if(e.category =='smartphones')
-               console.log('there is a category named smartphones');
+            
+             
                let i = findInArray(state.categories,e.category);
                 if( i != -1 )
                 {
@@ -61,7 +67,7 @@ export const slice =  createSlice({
        
     }
 })
-export const {addProducts,setReady} = slice.actions
+export const {addProducts,setReady,setSelectedCategory} = slice.actions
 export default slice.reducer;
 // import { createSlice } from '@reduxjs/toolkit'
 

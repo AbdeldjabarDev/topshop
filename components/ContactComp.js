@@ -14,7 +14,7 @@ export default function ContactComp(props)
     let iRef = useRef();
     return(<div className="flex flex-col w-full h-full">
 <Nav></Nav>
-<div className="lg:w-[45%] lg:h-[w-fit] h-full md:w-[60%] w-full  bg-white shadow-md border ml-auto mr-auto lg:mt-[6%] mt-[20%] overflow-hidden">
+<div className="lg:w-[45%] lg:h-fit h-full md:w-[60%] w-full  bg-white shadow-md border ml-auto mr-auto  mt-[100px] overflow-hidden">
     <div className="w-[200%] flex " ref={contRef}>
   <form className="w-[100%] flex flex-col gap-5" onSubmit={(e)=>
 {

@@ -4,6 +4,7 @@ import store from "../state/store";
 import { setQuery, setLoggedIn } from "../state/cartSlice";
 import { useDispatch } from "react-redux";
 import { getCookie, deleteCookie } from "cookies-next";
+import { setSelectedCategory } from "../state/productsSlice";
 
 function deleteAllCookies()
 {
@@ -62,7 +63,7 @@ export default function Nav(props) {
             return (
               <div key={e.name}
                 onClick={(ee) => {
-                  window.dispatchEvent(new Event('category_selected'));
+                  store.dispatch(setSelectedCategory(e.name));
                   router.replace("/categories?category=" + e.name);
                 }}
               >

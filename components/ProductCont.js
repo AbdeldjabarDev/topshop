@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addProduct, removeProduct } from "../state/cartSlice";
 import store from "../state/store";
 import RatingBar from "./RatingBar";
+import Image from "next/image";
 function findInArray(arr, p) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].title === p.title) {
@@ -15,7 +16,7 @@ function findInArray(arr, p) {
 export default function ProductCont(props) {
   let dispatch = useDispatch();
   let ref = useRef();
-  let not_loggedInRef = useRef();
+
   let [inCart, setInCart] = useState(
     findInArray(store.getState().cart.value, props.product) === -1
       ? false
@@ -25,14 +26,8 @@ export default function ProductCont(props) {
   if(props.e)
 {
  
-  return(<div className="flex w-[165px] gap-2 lg:w-60 lg:h-60 h-64 flex-col border ">
-    <div className="absolute top-[80px] left-[10vw] hidden h-[40px] w-fit  bg-white shadow-md" ref={not_loggedInRef}>
-      <div className="ml-2">You need to login first to be able to add items to your cart</div>
-      <div className="justify-end" onClick={(e)=>
-      {
-        not_loggedInRef.current.style.display = "none";
-      }}>x</div>
-    </div>
+  return(<div className="flex w-[180px] gap-2 lg:w-60 lg:h-60 h-64 flex-col border ">
+  
   <div className="h-48 w-full anim_beat" ></div>
   <div className="h-10 w-full anim_beat"></div>
   </div>)
@@ -55,8 +50,7 @@ export default function ProductCont(props) {
         <button
           className="w-[88%]  lg:w-[70%] text-md lg:text-xl mt-[40%] border border-black bg-black text-white hover:text-black rounded-full hover:bg-transparent ml-3 lg:ml-10 mr-auto"
           onClick={(e) => {
-            if(store.getState().cart.loggedIn == true)
-            {
+           
               if (inCart === false) {
                 console.log("adding " + props.product.title);
                 // store.getState().cart.value.delete(props.product._id);
@@ -67,12 +61,8 @@ export default function ProductCont(props) {
               console.log("removing " + props.product.title);
               dispatch(removeProduct(props.product));
               setInCart(false);
-            }
-            else
-            {
-              not_loggedInRef.current.style.display = "flex";
-            }
             
+         
           }}
         >
           {inCart === true ? "Remove From Cart" : "Add to Cart"}
@@ -83,10 +73,11 @@ export default function ProductCont(props) {
           </Link>
         </button>
       </div>
-      <div className="relative w-[165px] lg:w-60 lg:h-60 h-64 flex flex-col bg-[#fefefe]   border">
+      <div className="relative w-[180px] lg:w-60 lg:h-60 h-64 flex flex-col bg-[#fefefe]   border">
         <img
           className="w-[100%] ml-auto mr-auto h-[68%] z-10"
           src={props.product.thumbnail}
+          layout='fill'
         ></img>
         <div className="flex flex-col gap-2">
           <div className="flex text-black w-[100%]">
@@ -107,7 +98,7 @@ export default function ProductCont(props) {
           </div>
           <div className="flex w-full mr-2  gap-2 border-black h-fit ml-auto">
             <RatingBar rating={(props.product.rating - 4) * 5}></RatingBar>
-            <div className="text-sm mr-2">
+            <div className="text-sm  mr-2 ml-auto">
               <span className="text-green-600 text-xs mb-4  ml-auto">
                 {props.product.stock < 99 ? props.product.stock : "+99"}
               </span>{" "}
