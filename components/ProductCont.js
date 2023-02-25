@@ -5,6 +5,7 @@ import { addProduct, removeProduct } from "../state/cartSlice";
 import store from "../state/store";
 import RatingBar from "./RatingBar";
 import Image from "next/image";
+import { setSelectedProduct } from "../state/productsSlice";
 function findInArray(arr, p) {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i].title === p.title) {
@@ -69,7 +70,10 @@ export default function ProductCont(props) {
         </button>
         <button className=" w-[70%] lg:text-xl text-md mt-[5%] border border-green-600 bg-green-600 text-white hover:text-black rounded-full hover:bg-transparent ml-6 lg:ml-10 mr-auto">
           <Link href={"/details?id=" + props.product._id}>
-            <span className=" hover:text-green-600 text-md ">Details</span>
+            <span className=" hover:text-green-600 text-md " onClick={(e)=>
+            {
+              dispatch(setSelectedProduct(props.product));
+            }}>Details</span>
           </Link>
         </button>
       </div>
@@ -81,7 +85,7 @@ export default function ProductCont(props) {
         ></img>
         <div className="flex flex-col gap-2">
           <div className="flex text-black w-[100%]">
-            <div className="lg:text-md text-sm text-ellipsis max-w-[60%]  ml-2 mr-auto">
+            <div className="lg:text-md text-sm text-ellipsis max-w-[60%] lg:max-h-[25px] ml-2 mr-auto">
               {props.product.title}
             </div>
             {/* <div className="text-xl  ml-2 mr-auto">{props.product.name}</div> */}

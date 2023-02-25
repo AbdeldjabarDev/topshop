@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCookie } from 'cookies-next'
 import store from '../state/store'
 import ProductsContainer from '../components/ProductsContainer'
-import CategoryCont from '../components/CategoryCont'
+import CategoriesCont from '../components/CategoriesCont'
 let initiated = 0;
 async function fetchData(errorSetter)
 {
@@ -59,19 +59,26 @@ export default function Home()
    useEffect(()=>{ 
 setWidth(window.innerWidth)
 // fetchData(setError);
-if(store.getState().products.value.length == 0)
-fetch('https://topshopserver.onrender.com/products')
+if(store.getState().products.value.length === 0)
+{
+  console.log('we are not inititated');
+  fetch('https://topshopserver.onrender.com/products')
 .then((res) => res.json())
 .then((data)=>
 {
-  console.log('adding products ');
-  store.dispatch(addProducts(data.result));
-  initiated++;
+  if(store.getState().products.value.length == 0)
+  {
+    console.log('adding products ');
+    store.dispatch(addProducts(data.result));
+    initiated++;
+  }
+
 })
 .catch((e)=>
 {
   setError('We are facing issues now : ' + e.toString())
 })
+}
 
 })
 let t = getCookie('topshop_userId');
@@ -113,7 +120,7 @@ if(t != undefined && u != undefined)
     </div>
     <ProductsContainer products={products.filter((e)=> (e.rating-4)*5 > 4)} title= "Top Rated Products" width={wwidth}/>
     <div className='text-2xl font-semibold ml-20 w-fit mt-[1%] mb-[2%] before:bg-red-600'>Or browse by category</div>
-    <CategoryCont></CategoryCont>
+    <CategoriesCont></CategoriesCont>
   </div>
         
         </div>

@@ -18,7 +18,10 @@ export default function CartProductCont(props) {
         className="w-[40%]  h-full ml-[4%]"
         src={props.product.thumbnail}
       ></img>
-      <div className="text-lg ml-[2%] mt-[15%]">{props.product.title}</div>
+      <div className="flex flex-col ml-3 mt-[30%] gap-4 ">
+      <div className="text-lg text-ellipsis max-w-[200px]">{props.product.title}</div>
+      <div className="text-lg ">{props.product.price}$</div>
+      </div>
    </div>
       <div className="mt-[25%] mr-[4%] ml-auto">
         <div className="flex mr-[0.2%] lg:flex-nowrap flex-wrap ml-auto gap-3  h-fit translate-y-[-50%] border-red-600">
@@ -36,7 +39,7 @@ export default function CartProductCont(props) {
           >
            <Image src="/images/cart_plus.svg" layout="fill"></Image>
           </div>
-          <div className="text-2xl border mb- block h-full">{count}</div>
+          <div className="text-2xl mb- block h-full">{count}</div>
           <div
             className="p-3 relative rounded-full bg-[#f0efef] text-black shadow-md text-lg w-10  h-10 top-[50%] translate-y-[-50%]"
             onClick={(e) => {

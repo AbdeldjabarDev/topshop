@@ -16,9 +16,14 @@ export const slice =  createSlice({
         ready:false,
        categories : [],
        selectedCategory:'',
+       selectedProduct:{},
     },
     reducers :
-    {   
+    {   setSelectedProduct : (state,action)=>
+        {
+            state.selectedProduct = action.payload;
+        }
+        ,
         setSelectedCategory : (state,action) =>
         {
 state.selectedCategory = action.payload;
@@ -67,7 +72,7 @@ state.selectedCategory = action.payload;
        
     }
 })
-export const {addProducts,setReady,setSelectedCategory} = slice.actions
+export const {addProducts,setReady,setSelectedCategory,setSelectedProduct} = slice.actions
 export default slice.reducer;
 // import { createSlice } from '@reduxjs/toolkit'
 

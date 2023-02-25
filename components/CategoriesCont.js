@@ -3,7 +3,7 @@ import store from "../state/store"
 import ProductCont from "./ProductCont"
 import { useRouter } from "next/router";
 import { setSelectedCategory } from "../state/productsSlice";
-export default function CategoryCont()
+export default function CategoriesCont()
 {
     let router = useRouter();
     let categories = useSelector((state) => state.products.categories)
@@ -13,7 +13,7 @@ export default function CategoryCont()
             <div className='ml-20 gap-9 w-[90%]  flex md:flex-row flex-col flex-wrap '>
     {categories.map((e)=>
         {
-         return   <div className='w-60 h-60 bg-white shadow-md rounded-md flex flex-col ' onClick={(ee)=>
+         return   <div className='w-60 h-60 bg-white shadow-md rounded-md flex flex-col 'key={Math.random()*100000} onClick={(ee)=>
          {
             router.replace('/categories')
             store.dispatch(setSelectedCategory(e.name))

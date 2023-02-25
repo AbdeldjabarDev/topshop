@@ -35,10 +35,12 @@ export default function CartComp(props) {
   return (
     <div className="w-full h-full flex flex-col">
       <Nav></Nav>
-      <div className="absolute top-[80px] left-[10vw] hidden h-[40px] w-fit  bg-white shadow-md" ref={notloggedInRef}>
-      <div className="ml-2">You need to login first to confirm the purchase</div>
-      <div className="justify-end" onClick={(e)=>
+      <div className="absolute top-[0px] left-1 lg:left-[25vw] hidden h-fit lg:h-[40px] w-fit lg:w-[40vw]   bg-white shadow-md" ref={notloggedInRef}>
+      <div className="ml-1 lg:ml-10 text-lg">You need to login first to confirm the purchase</div>
+      <div className="mr-6 text-lg ml-auto text-red-600 cursor-default rounded-full p-1" onClick={(e)=>
       {
+        // notloggedInRef.current.style.transform = "translateY(-100px)";
+
         notloggedInRef.current.style.display = "none";
       }}>x</div>
     </div>
@@ -57,6 +59,7 @@ export default function CartComp(props) {
               if(store.getState().cart.loggedIn == false)
               {
                 notloggedInRef.current.style.display = "flex";
+                notloggedInRef.current.style.transform = "translateY(80px)";
                 return;
               }
               setLoading(true);

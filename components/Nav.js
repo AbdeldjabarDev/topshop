@@ -27,7 +27,7 @@ export default function Nav(props) {
   return (
     <div className="fixed h-[70px]  md:h-[70px] mb-[15%] text-xl w-[100vw] z-20 flex gap-5 shadow-sm bg-white cursor-default">
       <div
-        className="absolute md:w-[30%] lg:[20%] w-[80%]  overflow-hidden  shadow-md h-[100vh]  top-0 left-0 bg-white text-black flex flex-col translate-x-[-100%] "
+        className="absolute md:w-[30%] lg:[15%] w-[100%]  overflow-hidden  shadow-md h-[100vh]  top-0 left-0 bg-white text-black flex flex-col translate-x-[-100%] "
         ref={navRef}
         style={{ transition: "transform 0.8s ease" }}
       >
@@ -155,9 +155,9 @@ export default function Nav(props) {
           }}
         ></img>
       </div>
-      <div className="flex pt-4 gap-6  border-green-600 lg:mr-[5%] mr-0 ml-[20%] lg:ml-auto ">
+      <div className="flex pt-4 gap-5  border-green-600 lg:mr-[5%] mr-0 ml-[20%] lg:ml-auto ">
         <input
-          className="w-[50%] lg:w-[50%] h-[40px] bg-[#f6f6f6] focus:bg-white rounded-full border border-slate-300 pl-6 text-black"
+          className="w-[50%] lg:w-[50%] h-[40px] bg-[#f6f6f6] focus:bg-white rounded-full border border-slate-300 pl-5 text-black"
           ref={searchRef}
           onFocus={(e) => {
             e.target.style.width = "80%";

@@ -90,7 +90,7 @@ export default function ProductsContainer(props)
       <div className="w-full ml-auto mr-auto flex flex-col">
       <div className='text-2xl font-semibold w- text-center w-fit ml-auto mr-auto mb-[2%]'>{props.title}</div>
        
-     <div className='flex w-[95%] justify-center flex-wrap lg:ml-auto  -[2px]  border-red-600 lg:gap-6 gap-3' ref={parentRef} >
+     <div className='flex w-full lg:w-[95%] justify-center flex-wrap lg:ml-auto ml-0  -[2px]  border-red-600 lg:gap-6 gap-3' ref={parentRef} >
        {props.products.map((e)=> {
            return <ProductCont key={e._id + Math.random()*100000} product= {e} />
        })}            

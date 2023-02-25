@@ -60,9 +60,9 @@ export const Carouseler = ({controls,children})=>
          <div className="z-20"  onClick={(e)=>
       {console.log("control clicked : right");
       if(itemIndex < 0)
-      {setItemIndex(0);return};
+      {return};
       if(itemIndex == children.length -1 )
-      {return} 
+      {setItemIndex(0);return} 
        setItemIndex(itemIndex+1)}}>{controls[0]}</div>
   <div className="z-20" style={{display: itemIndex == 0 ? 'none':'block'}} onClick={(e)=>{
       console.log("control clicked : left ");

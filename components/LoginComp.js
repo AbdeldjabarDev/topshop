@@ -253,7 +253,7 @@ export default function LoginComp(props) {
         >
           Forgot password ?{" "}
           <Link href="/reset">
-            <span className="text-blue-500">Reset password</span>
+            <span className="text-blue-500 cursor-default">Reset password</span>
           </Link>
         </div>
         <div className="ml-auto mr-auto dark:text-black">

@@ -13,7 +13,7 @@ export default function PurchasesComp(props)
     console.log('initiated  : ' + initiated);
     if(initiated == 0 )
     {
-       
+        if(getCookie('topshop_userId') != undefined)
         fetch('https://topshopserver.onrender.com/purchases',{
             method:"POST",
             headers:{
@@ -39,9 +39,10 @@ export default function PurchasesComp(props)
     return(
         <div className="w-full h-full flex flex-col gap-6">
             <Nav></Nav>
-            <div className="w-[95%] lg:w-[50%] lg:mt-[9%] mt-[25%] shadow-md ml-auto mr-auto bg-white rounded-md border h-[400px] flex flex-col gap-6">
-        <div className="ml-auto mr-auto text-2xl mt-[15%] w-fit">You need to login to view your purchases</div>
-        <button className="pl-5 pr-5 pt-3 pb-3 rounded-md w-fit ml-auto mr-auto text-white bg-green-600 shadow-md active:shadow-none " onClick={(e)=>{
+            <div className="w-full lg:w-[50%] lg:mt-[9%] mt-[25%]  ml-auto mr-auto  h-[400px] flex flex-col gap-6">
+                <img className="max-h-[400px]" src='/images/Secure.svg'></img>
+        <div className="ml-auto mr-auto justify-center text-xl lg:text-2xl mt-[5%] w-fit">You need to login to view your purchases</div>
+        <button className="pl-5 pr-5 pt-3 pb-3 rounded-md text-lg w-fit ml-auto mr-auto text-white bg-green-600 shadow-md active:shadow-none " onClick={(e)=>{
             router.replace('/login')
         }}>Login</button>
             </div>

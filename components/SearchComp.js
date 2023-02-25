@@ -21,7 +21,7 @@ export default function SearchComp(props)
     return(
         <div className="w-full h-full flex flex-col">
         <Nav ></Nav>
-       <div className="ml-auto mr-auto mt-[10%] flex flex-col w-[85%] lg:w-[60%] bg-white pb-5 shadow-md pl-2">
+       <div className="ml-auto mr-auto lg:mt-[10%] mt-[15%] flex flex-col w-full lg:w-[60%]  bg-white pb-10 shadow-md pl-2">
        <div className="text-2xl w-full border-b p-3 justify-center flex content-center mt-[1.5%]">Search results for  "{props.query}"</div>
         <ProductsContainer products={products} all></ProductsContainer>
        </div>

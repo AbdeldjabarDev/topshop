@@ -5,56 +5,34 @@ import {Carouseler} from "../components/Carouseler";
 import ProductsContainer from "../components/ProductsContainer";
 import RatingBar from "../components/RatingBar";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct,removeProduct } from "../state/cartSlice";
 import { useState } from "react";
 import { useEffect } from "react";
-let fetcher = (...args) => fetch(...args).then((res)=> res.json());
+// let fetcher = (...args) => fetch(...args).then((res)=> res.json());
 export default function DetailsComp()
 {
-  let c = [];
-    let [p,setP] = useState({title:'',brand:'',price:'',discountPercentage:'',stock:'',rating:''});
-    let router = useRouter();
-    let id = router.query.id;
-    let data = store.getState().products.value ;
-    console.log('rendered');
+
+   let p = useSelector((state) => state.products.selectedProduct)
     useEffect(()=>
     {
-        let f = async() =>
-        {    
-            let product;        
-        console.log(
-            "number of products  : " + data.length
-          );
-        for (let p of data) {
-          if (p._id == id) {
-            product = p;  
-          }
-        }
-        
-        for (let i of product.images) {
-          console.log("image : " + i);
-          c.push(<img className="w-[100%]" layout="fill"  src={i} key={i}></img>);     
-        }
-        setP(product)
-       
-        }
-        f();
-    },[c,p])
+      
+    },)
     let dispatch = useDispatch();
-    let [inCart,setInCart] = useState(false)
+    let [inCart,setInCart] = useState(false);
+    console.log(p)
 return ( <div className="flex flex-col w-full h-full">
 <Nav></Nav>
-<div className="lg:w-[90%] w-full mt-[8%] ml-auto flex flex-col mr-auto  border   -black">
+<div className="lg:w-[90%] w-full mt-[8%] ml-auto flex flex-col mr-auto     -black">
   <div className="mt-[15%] lg:mt-[1%] text-2xl ml-0 lg:ml-[10%] mb-[1%]">{p.title}</div>
-  <div className="flex lg:flex-nowrap flex-wrap w-full lg:w-[80%] gap-10 mb-[10%] pb-[5%] h-fit lg:h-[60vh] ml-auto mr-auto shadow-lg bg-white    -black">
+  <div className="flex lg:flex-nowrap flex-wrap w-full lg:w-[80%] gap-10 mb-[10%]  h-fit p-4 ml-auto mr-auto shadow-lg bg-white   -black">
     <Carouseler
       tailwind="lg:w-[40%] w-[100%] relative h-[100%] -[5px]   -green-600"
       controls={[
-        <div className="absolute lg:top-[50%] top-[105%] lg:left-[-15%] left-[20%] text-xl w-12 h-12 text-center   p-4 rounded-full bg-red-300"><Image src="/images/details_nextarrow.svg" layout="fill"></Image></div>,
-        <div className="absolute lg:top-[50%] top-[105%] lg:left-[105%] left-[45%] text-xl w-12 h-12 text-center pb-3  p-4 rounded-full bg-blue-300"><Image src="/images/details_previousarrow.svg" layout="fill"></Image></div>,
+        <div className="absolute lg:top-[35%] top-[105%] lg:left-[105%] left-[20%] text-xl w-12 h-12 text-center   p-4 rounded-full bg-red-300"><Image src="/images/details_nextarrow.svg" layout="fill"></Image></div>,
+        <div className="absolute lg:top-[55%] top-[105%] lg:left-[105%] left-[45%] text-xl w-12 h-12 text-center pb-3  p-4 rounded-full bg-blue-300"><Image src="/images/details_previousarrow.svg" layout="fill"></Image></div>,
       ]}
-      children={c}
+      children={p.images.map((e)=> <img src={e}></img>)}
     ></Carouseler>
 
 
@@ -88,12 +66,12 @@ setInCart(false);
     }}>{inCart === true ? "Remove From Cart":"Add to Cart"}</button>
   </div>
   </div>
-  <div className="text-2xl ml-[10%] font-semibold">Similar Products :</div>
+  <div className="text-2xl lg:ml-[10%] ml-2 font-semibold">Similar Products :</div>
   <ProductsContainer
     products={store.getState().products.value.filter((e) => {
       return e.category == p.category && e.id != p.id;
     })}
-  ></ProductsContainer>
+   all></ProductsContainer>
 </div>
 </div>)
 }
