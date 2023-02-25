@@ -54,7 +54,8 @@ export default function CartComp(props) {
         <div className="flex flex-col  border-red-400 ">
         <div className="ml-auto mr-[10%] mb-[2%]">{"Total : " +totalAmount+ "$"}</div>
           <button
-            className="bg-green-600 p-3 rounded-md mb-10 font-semibold ml-auto mr-auto text-white"
+            disabled={loading}
+            className="bg-green-600 disabled:bg-green-200 p-3 w-[150px] rounded-md mb-10 font-semibold ml-auto mr-auto text-white"
             onClick={(e) => {
               if(store.getState().cart.loggedIn == false)
               {

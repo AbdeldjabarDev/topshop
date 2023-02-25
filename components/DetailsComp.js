@@ -13,11 +13,12 @@ import { useEffect } from "react";
 export default function DetailsComp()
 {
 
-   let p = useSelector((state) => state.products.selectedProduct)
+   let p = useSelector((state) => state.products.selectedProduct);
+   let [c,setC] = useState([]);
     useEffect(()=>
     {
-      
-    },)
+      setC(p.images.map((e)=> <img src={e}></img>));
+    },[c])
     let dispatch = useDispatch();
     let [inCart,setInCart] = useState(false);
     console.log(p)
@@ -32,7 +33,7 @@ return ( <div className="flex flex-col w-full h-full">
         <div className="absolute lg:top-[35%] top-[105%] lg:left-[105%] left-[20%] text-xl w-12 h-12 text-center   p-4 rounded-full bg-red-300"><Image src="/images/details_nextarrow.svg" layout="fill"></Image></div>,
         <div className="absolute lg:top-[55%] top-[105%] lg:left-[105%] left-[45%] text-xl w-12 h-12 text-center pb-3  p-4 rounded-full bg-blue-300"><Image src="/images/details_previousarrow.svg" layout="fill"></Image></div>,
       ]}
-      children={p.images.map((e)=> <img src={e}></img>)}
+      children={c}
     ></Carouseler>
 
 
