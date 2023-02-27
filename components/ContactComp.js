@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import store from "../state/store";
+import { useSelector } from "react-redux";
 export default function ContactComp(props)
 {
     let contRef = useRef();
@@ -12,9 +13,11 @@ export default function ContactComp(props)
     let nRef = useRef();
     let sRef = useRef();
     let iRef = useRef();
-    return(<div className="flex flex-col w-full h-full">
+    let dark = useSelector((state) => state.products.dark);
+    let [loading,setLoading] = useState(false);
+    return(<div className="flex flex-col w-full h-full" style={{backgroundColor : dark == true ? "rgb(40 31 39)":"white",color:dark == true ? "white":"black"}}>
 <Nav></Nav>
-<div className="lg:w-[45%] lg:h-fit h-full md:w-[60%] w-full  bg-white shadow-md border ml-auto mr-auto  mt-[100px] overflow-hidden">
+<div className="lg:w-[45%] h-fit  md:w-[60%] w-full  shadow-md  ml-auto mr-auto  mt-[100px] overflow-hidden" >
     <div className="w-[200%] flex " ref={contRef}>
   <form className="w-[100%] flex flex-col gap-5" onSubmit={(e)=>
 {
@@ -24,7 +27,7 @@ export default function ContactComp(props)
      setE("The maximum number of characteres allowed in the issue description is 420 ");
      return;
     }
- 
+ setLoading(true)
  fetch('https://topshopserver.onrender.com/'+ "/report",{
  method:"POST",
  headers:{
@@ -41,21 +44,32 @@ export default function ContactComp(props)
  }).then((r) => r.json())
  .then((data)=>
  {
-     contRef.current.style.transform = "translateX(-50%)"
+     contRef.current.style.transform = "translateX(-50%)";
+     setLoading(false);
  })
     
 }}>
   <div className="ml-auto mr-auto text-xl mb-[3%] lg:text-2xl mt-[6%]">We are always happy to here from you</div>
-    <input className="ml-auto mr-auto w-[85%] border pl-2 rounded-md h-[7vh]" ref={emRef} type="email" placeholder="Email"></input>
-    <input className="ml-auto mr-auto w-[85%] border pl-2 rounded-md h-[7vh]" ref={nRef} type="text" placeholder="Full Name"></input>
-    <input className="ml-auto mr-auto w-[85%] border pl-2 rounded-md h-[7vh]" ref={sRef} placeholder="Subject"></input>
-    <textarea className="ml-auto mr-auto w-[85%] pl-2 h-[25vh] resize-none border" ref={iRef} placeholder="Write your description of the issue here"></textarea>
-    <button className="ml-auto mr-auto text-white w-[15%] shadow-md active:shadow-none bg-green-600 p-3 rounded-md transition-none" type="submit">Send</button>
+    <input className="ml-auto mr-auto w-[85%] border pl-2 rounded-md h-[60px]" style={{backgroundColor : dark == true ? "rgb(130 130 130)":"white",color:dark == true ? "white":"black"}} ref={emRef} type="email" placeholder="Email"></input>
+    <input className="ml-auto mr-auto w-[85%] border pl-2 rounded-md h-[60px]" style={{backgroundColor : dark == true ? "rgb(130 130 130)":"white",color:dark == true ? "white":"black"}} ref={nRef} type="text" placeholder="Full Name"></input>
+    <input className="ml-auto mr-auto w-[85%] border pl-2 rounded-md h-[60px]" style={{backgroundColor : dark == true ? "rgb(130 130 130)":"white",color:dark == true ? "white":"black"}} ref={sRef} placeholder="Subject"></input>
+    <textarea className="ml-auto mr-auto w-[85%] pl-2 h-[200px] resize-none border" style={{backgroundColor : dark == true ? "rgb(130 130 130)":"white",color:dark == true ? "white":"black"}} ref={iRef} placeholder="Write your description of the issue here"></textarea>
+    <button
+            type="submit"
+            disabled={loading}
+            className="ml-auto mr-auto lg:w-[22%] md:w-[28%] w-fit pl-4 pr-4 pt-2 pb-2 text-lg disabled:bg-green-100 bg-green-600 text-white p-3 rounded-md"
+          >
+         { loading == true ?"" : "Send"}
+            <div
+              className="w-8 h-8 ml-auto mr-auto rounded-full border border-white border-b-blue-500 animate-spin"
+              style={{ display: loading === true ? "block" : "none" }}
+            ></div>
+          </button>
     <div>{e}</div>
   </form>
   <div className="w-[100%] flex flex-col gap-5">
   <div className="ml-auto mr-auto text-2xl mt-[16%]">Your issue has been reported</div>
-  <button className="ml-auto mr-auto text-white w-fit shadow-md active:shadow-none bg-green-600 p-3 rounded-md transition-none" onClick={(e)=>
+  <button className="ml-auto mr-auto w-[150px] shadow-md active:shadow-none bg-green-600  rounded-md transition-none" onClick={(e)=>
 {
  router.replace('/')   
 }}>Continue Shopping</button>

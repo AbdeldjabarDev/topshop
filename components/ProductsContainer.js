@@ -5,10 +5,12 @@ import ProductCont from "./ProductCont"
 import Image from "next/image";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useInView } from "react-intersection-observer";
 export default function ProductsContainer(props)
 {
     let [x,setX] = useState(0);
     let parentRef = useRef();
+    let {ref,InView,entry} = useInView();
     let router = useRouter();
     let [width,setWidth] = useState(props.width);
     useEffect(()=>
@@ -38,8 +40,8 @@ export default function ProductsContainer(props)
     
     </div>)
     return(
-      <div className='flex flex-col relative h-[40%]' >
-      <div className='text-2xl font-semibold w-fit ml-20 mr-auto mt-[1%] mb-[2%] before:bg-red-600 '>{props.title}</div>
+      <div className='flex flex-col relative h-[40%]' ref={ref} style={{transform: InView == true ? 'translateY(-100px)':'translateY(0px)'}}>
+      <div className='text-2xl  w-fit ml-20 mr-auto mt-[1%] mb-[2%] before:bg-red-600 '>{props.title}</div>
      <div className="w-full overflow-hidden flex">
      <div className='flex ml-20 mr-auto border-red-600 gap-9' ref={parentRef} style={{transition:"all 1s ease-out",transform:`translateX(${x}%)`,width:(props.products.length*100)/4 + '%'}}>
        {props.products.slice(0,5).map((e)=> {
@@ -88,7 +90,7 @@ export default function ProductsContainer(props)
     )  
     return(
       <div className="w-full ml-auto mr-auto flex flex-col">
-      <div className='text-2xl font-semibold w- text-center w-fit ml-auto mr-auto mb-[2%]'>{props.title}</div>
+      <div className='text-2xl  w- text-center w-fit ml-auto mr-auto mb-[2%]'  ref={ref} style={{transform: InView == true ? 'translateY(-100px)':'translateY(0px)'}}>{props.title}</div>
        
      <div className='flex w-full lg:w-[95%] justify-center flex-wrap lg:ml-auto ml-0  -[2px]  border-red-600 lg:gap-6 gap-3' ref={parentRef} >
        {props.products.map((e)=> {

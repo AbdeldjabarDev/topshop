@@ -2,15 +2,18 @@ import store from "../state/store";
 import Nav from "../components/Nav";
 import CartProductCont from "../components/CartProductCont";
 import { useEffect, useState,useRef } from "react";
-import { Router, useRouter } from "next/router";
+import {  useRouter } from "next/router";
 import { getCookie } from "cookies-next";
+import { useSelector } from "react-redux";
 export default function CartComp(props) {
   let router = useRouter();
   let [empty, setEmpty] = useState(false);
   let [loading,setLoading] = useState(false);
   let [totalAmount,setTotalAmount] = useState(store.getState().cart.total);
   let notloggedInRef = useRef();
+  let dark = useSelector((state)=> state.products.dark)
   useEffect(() => {
+   
     if (store.getState().cart.value.length == 0) setEmpty(true);
     return store.subscribe(() => {
       if (store.getState().cart.value.length == 0) setEmpty(true);
@@ -24,7 +27,8 @@ export default function CartComp(props) {
     return (
       <>
          <Nav></Nav>
-      <div className="w-full h-[100vh] flex justify-around flex-col">
+      
+      <div className="w-full h-[100vh] flex justify-around flex-col"   style={{backgroundColor:dark ==true ? 'rgb(100 100 100)':'white',transition:'transform 0.5s ease'}}>
        
         <img className="ml-auto mr-auto translate-y-[20%] w-[300px] h-[300px]" src="/images/empty_cart.svg"></img>
         <div className="ml-auto mr-auto text-xl ">You have no items in your cart</div>
@@ -33,18 +37,18 @@ export default function CartComp(props) {
    
     );
   return (
-    <div className="w-full h-full flex flex-col">
+    <>
       <Nav></Nav>
-      <div className="absolute top-[0px] left-1 lg:left-[25vw] hidden h-fit lg:h-[40px] w-fit lg:w-[40vw]   bg-white shadow-md" ref={notloggedInRef}>
+      <div className="absolute top-[0px] left-1 lg:left-[25%] hidden h-fit lg:h-[40px] w-fit lg:w-[40vw]   bg-white shadow-md" ref={notloggedInRef}  style={{backgroundColor:dark ==true ? 'rgb(40 31 39)':'white',transition:'transform 0.5s ease',color:dark == true ? "white":"black"}}>
       <div className="ml-1 lg:ml-10 text-lg">You need to login first to confirm the purchase</div>
-      <div className="mr-6 text-lg ml-auto text-red-600 cursor-default rounded-full p-1" onClick={(e)=>
+      <div className="mr-6 text-lg ml-auto text-red-600 cursor-default rounded-full p-1 to-blue-900" onClick={(e)=>
       {
         // notloggedInRef.current.style.transform = "translateY(-100px)";
 
-        notloggedInRef.current.style.display = "none";
+        notloggedInRef.current.style.transform  = "translateY(-90px)";
       }}>x</div>
     </div>
-      <div className="lg:w-[50%] w-full ml-auto mr-auto border-none bg-white lg:border border-black  rounded-md shadow-none lg:shadow-lg flex flex-col mt-[25%] lg:mt-[10%] gap-4">
+      <div className="lg:w-[50%] w-full ml-auto mr-auto border-none  lg:border  rounded-md shadow-none lg:shadow-lg flex flex-col mt-[90px]  gap-4" style={{backgroundColor : dark == true ? "rgb(100 100 100)":"white",color:dark == true ? "white":"black"}}>
         <div className="flex flex-col ml-0 lg:ml-[10%]">
           {store.getState().cart.value.map((e, i) => {
             return <CartProductCont product={e} count={i} key={e.id}/>;
@@ -60,7 +64,7 @@ export default function CartComp(props) {
               if(store.getState().cart.loggedIn == false)
               {
                 notloggedInRef.current.style.display = "flex";
-                notloggedInRef.current.style.transform = "translateY(80px)";
+                notloggedInRef.current.style.transform = "translateY(100px)";
                 return;
               }
               setLoading(true);
@@ -106,6 +110,6 @@ export default function CartComp(props) {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }

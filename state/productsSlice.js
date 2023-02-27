@@ -17,6 +17,7 @@ export const slice =  createSlice({
        categories : [],
        selectedCategory:'',
        selectedProduct:{},
+       dark:false,
     },
     reducers :
     {   setSelectedProduct : (state,action)=>
@@ -68,11 +69,15 @@ state.selectedCategory = action.payload;
        {
         state.ready = true;
        },
+       setDark : (state,action) =>
+       {
+       state.dark = action.payload;
+       }
     
        
     }
 })
-export const {addProducts,setReady,setSelectedCategory,setSelectedProduct} = slice.actions
+export const {addProducts,setReady,setSelectedCategory,setSelectedProduct,setDark} = slice.actions
 export default slice.reducer;
 // import { createSlice } from '@reduxjs/toolkit'
 

@@ -2,10 +2,12 @@ import { useRef, useState } from "react";
 import { useRouter } from "next/router";
 import store from "../state/store";
 import { setQuery, setLoggedIn } from "../state/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getCookie, deleteCookie } from "cookies-next";
-import { setSelectedCategory } from "../state/productsSlice";
-
+import { setDark, setSelectedCategory } from "../state/productsSlice";
+import { BsFillCartFill, BsSearch } from "react-icons/bs";
+import {BiPurchaseTagAlt,BiCategoryAlt} from "react-icons/bi";
+import {MdOutlineContactSupport} from "react-icons/md"
 function deleteAllCookies()
 {
   deleteCookie("topshop_userId");
@@ -17,6 +19,7 @@ export default function Nav(props) {
   const dispatch = useDispatch();
   let searchRef = useRef();
   let navRef = useRef();
+  let dark = useSelector((state)=> state.products.dark)
   let loginListRef = useRef();
   let [loginListState, setLoginListState] = useState(true);
   let router = useRouter();
@@ -25,18 +28,20 @@ export default function Nav(props) {
   let accountRef = useRef();
   let [closed, setClosed] = useState(true);
   return (
-    <div className="fixed h-[70px]  md:h-[70px] mb-[15%] text-xl w-[100vw] z-20 flex gap-5 shadow-sm bg-white cursor-default">
+    <div className="fixed h-[70px] top-0 left-0 md:h-[70px] mb-[15%] text-xl w-[100vw] z-20 flex gap-5 shadow-sm  cursor-default" style={{backgroundColor:dark ==true ? 'rgb(40 31 39)':'white'}}>
       <div
-        className="absolute md:w-[30%] lg:[15%] w-[100%]  overflow-hidden  shadow-md h-[100vh]  top-0 left-0 bg-white text-black flex flex-col translate-x-[-100%] "
+        className="absolute md:w-[30%] lg:[15%] w-[100%] overflow-hidden  shadow-md h-[100vh]  top-0 left-0 bg-white text-black flex flex-col translate-x-[-100%] " 
         ref={navRef}
-        style={{ transition: "transform 0.8s ease" }}
+        style={{backgroundColor:dark ==true ? 'rgb(40 31 39)':'white',color : dark == true ? "white":"black",transition:'transform 0.5s ease'}}
       >
         <div
-          className="flex  mt-[10%] pt-4 pb-4 content-center bg-white hover:bg-green-50"
+          className="flex pl-4 mt-[50px] pt-4 pb-4 content-center gap-4 "
+          style={{backgroundColor:dark ==true ? 'rgb(40 31 39)':'white',transition:'transform 0.5s ease'}}
+
           onClick={(e) => {
             if (closed === true) {
               categoriesRef.current.style.transitionProperty = "height";
-              categoriesRef.current.style.transitionDuration = "0.8s";
+              categoriesRef.current.style.transitionDuration = "0.5s";
               categoriesRef.current.style.transitionTimingFunction = "ease";
               categoriesRef.current.style.height = "40%";
               setClosed(false);
@@ -48,14 +53,11 @@ export default function Nav(props) {
             }
           }}
         >
-          <img
-            src="/images/menu-side-nav-svgrepo-com.svg"
-            className="w-8 h-8 ml-4 mr-2"
-          ></img>
-          <div>Categories </div>
+          <BiCategoryAlt color="" size={28}></BiCategoryAlt> 
+          <div >Categories </div>
         </div>
         <div
-          className="ml-4 flex flex-col gap-4 h-0 text-black overflow-hidden overflow-y-auto"
+          className="pl-4 flex flex-col gap-4 h-0 text-black overflow-hidden overflow-y-auto"
           ref={categoriesRef}
           style={{ transition: "height 0.8s ease" }}
         >
@@ -74,6 +76,7 @@ export default function Nav(props) {
         </div>
         <div
           className="text-black text-3xl absolute top-[0.2%] left-[90%] mr-10 ml-auto"
+          style={{color : dark == true ? "white":"black"}}
           onClick={(e) => {
             navRef.current.style.transform = "translateX(-100%)";
           }}
@@ -82,27 +85,21 @@ export default function Nav(props) {
         </div>
         <div className="flex flex-col">
           <div
-            className="flex  pt-4 pb-4 content-center hover:bg-green-50"
+            className="flex  pt-4 pb-4 gap-4 pl-4 content-center hover:bg-green-50"
             onClick={(e) => {
               router.replace("/purchases");
             }}
           >
-            <img
-              className="w-8 h-8 ml-4 mr-2"
-              src="/images/stacked-print-products-svgrepo-com.svg"
-            ></img>
+           <BiPurchaseTagAlt color="" size={28}></BiPurchaseTagAlt>
             <div>My Purchases</div>
           </div>
           <div
-            className="flex  pt-4 pb-4 content-center hover:bg-green-50"
+            className="flex pl-4 gap-4 pt-4 pb-4 content-center hover:bg-green-50"
             onClick={(e) => {
               router.replace("/contact");
             }}
           >
-            <img
-              className="w-8 h-8 ml-4 mr-2"
-              src="/images/contact-form-svgrepo-com.svg"
-            ></img>
+           <MdOutlineContactSupport color= {dark == true ? "#ffffff":"#000000"} size={28}></MdOutlineContactSupport>
             <div>Contact us</div>
           </div>
           <div
@@ -119,30 +116,26 @@ export default function Nav(props) {
           style={{display:store.getState().cart.loggedIn == true ? 'block':'none'}}
           >
             <img
-              className="w-8 h-8 ml-2 mr-2"
+              className="w-6 h-6 ml-2 mr-2"
               src={store.getState().cart.loggedIn == true ? "/images/logout-svgrepo-com.svg":"/images/account-svgrepo-com.svg"}
             ></img>
             <div>{store.getState().cart.loggedIn == true ? 'Log out':'Login'}</div>
           </div>
         </div>
         <div
-          className="flex pt-4 pb-4 content-center lg:hidden hover:bg-green-50"
+          className="flex pt-4 pl-4 gap-4 pb-4 content-center lg:hidden hover:bg-green-50"
           onClick={(e) => {
             router.replace("/cart");
           }}
         >
-          <img
-            className="w-7 ml-2 mr-2 h-7  "
-            src="/images/cart-svgrepo-com.svg"
-            ref={cartRef}
-          ></img>
+          <BsFillCartFill size={22} color={dark == true ? "#ffffff":"#000000"}></BsFillCartFill>
           <div>My Cart</div>
         </div>
       </div>
       <div className="flex gap-3 -z-20 ">
         <img
-          src="/images/menu-svgrepo-com.svg"
-          className="w-7 h-7  ml-4  translate-y-[80%]"
+          src={dark == true ? "/images/menu-svgrepo-com-dark.svg":"/images/menu-svgrepo-com.svg"}
+          className="ml-4 w-6 h-6 translate-y-[80%]"
           onClick={(e) => {
             navRef.current.style.transform = "translateX(0%)";
           }}
@@ -167,10 +160,10 @@ export default function Nav(props) {
             e.target.style.width = "50%";
           }}  
         ></input>
-        <div className="flex border-black gap-4">
+        <div className="flex content-center   border-black gap-4">
           <img
-            className="w-7 h-7  hover:shadow-md"
-            src="/images/search.svg"
+            className="w-6 h-6 hover:shadow-md  mt-2"
+            src={dark == true ? "/images/search-dark.svg" : "/images/search.svg"}
             onClick={(e) => {
               if (searchRef.current.value.toString() !== "") {
                 dispatch(setQuery(searchRef.current.value));
@@ -178,17 +171,16 @@ export default function Nav(props) {
               }
             }}
           ></img>
+          {/* <BsSearch  color={dark == true ? "#ffffff":"#000000"} className="mt-2 w-6 h-6"  onClick={(e) => {
+              if (searchRef.current.value.toString() !== "") {
+                dispatch(setQuery(searchRef.current.value));
+                router.replace("/search/?query=" + searchRef.current.value);
+              }
+            }}></BsSearch> */}
+       {<BsFillCartFill size={22} color={dark == true ? "#ffffff":"#000000"} onClick={(e)=>{router.replace('/cart')}} className="mt-2 hidden lg:inline" style={{transition:"none",}}></BsFillCartFill >}
           <img
-            className="w-7 h-7 hidden lg:inline  hover:shadow-md"
-            src="/images/cart-svgrepo-com.svg"
-            ref={cartRef}
-            onClick={(e) => {
-              router.replace("/cart");
-            }}
-          ></img>
-          <img
-            className="w-7 h-7 hidden lg:inline"
-            src="/images/account.svg"
+            className="w-6 h-6 hidden lg:inline   mt-2"
+            src={dark == true ?"/images/account-dark.svg":"/images/account.svg"}
             ref={accountRef}
             onClick={(e) => {
               if (!store.getState().cart.loggedIn) {
@@ -200,6 +192,10 @@ export default function Nav(props) {
               }
             }}
           ></img>
+          <img className="w-6 h-6 mt-2" src={dark == true ? '/images/light-mode.svg':'/images/dark-mode-night-moon-svgrepo-com.svg'} onClick= {(e)=>
+          { 
+            store.dispatch(setDark(!dark));
+          }}></img>
         </div>
       </div>
       <div

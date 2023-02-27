@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setToken, setUser, setLoggedIn } from "../state/cartSlice";
 import { setCookie } from "cookies-next";
+import store from "../state/store";
+import { setDark } from "../state/productsSlice";
 import CryptoJS from "crypto-js";
 
 export default function LoginComp(props) {
@@ -16,8 +18,20 @@ export default function LoginComp(props) {
   let [passwordError, setPasswordError] = useState("");
   let [emailError, setEmailError] = useState("");
   let [generalError, setGeneralError] = useState("");
-  let [submitState, setSubmitState] = useState(false);
+  let dark = useSelector((state)=> state.products.dark);
   let router = useRouter();
+  useEffect(()=>
+  {
+    if(dark == true)
+   {
+    document.body.style.backgroundColor = 'black';
+    document.body.style.color = 'white';
+
+   }
+    else
+  {  document.body.style.backgroundColor  ='#f9f9f9'
+    document.body.style.color = 'black';}
+  },[dark])
   // store.subscribe(() => {
   //   setUser(store.getState().cart.user);
   //   setTokenString(store.getState().cart.token);
@@ -41,10 +55,10 @@ export default function LoginComp(props) {
           dispatch(setToken(data.token));
           dispatch(setLoggedIn(true));
           router.replace("/");
-          setSubmitState(false);
+ 
         } else if (data.error == 2) {
           setLoading(false);
-          setSubmitState(false);
+       
 
           setPasswordError("");
           setEmailError("");
@@ -55,12 +69,12 @@ export default function LoginComp(props) {
       })
       .catch((e) => {
         setLoading(false);
-        setSubmitState(false);
+      
 
         setGeneralError(e.toString());
       });
     setLoading(true);
-    setSubmitState(true);
+
   };
   let attemptLogin = (email, password) => {
     const data = {
@@ -105,10 +119,10 @@ export default function LoginComp(props) {
         setPasswordError("");
         setLoading(false);
         console.log("error : " + err);
-        setSubmitState(false);
+        
       });
     setLoading(true);
-    setSubmitState(true);
+  
   };
   // let t = getCookie('topshop_userId');
   // let u = getCookie('topshop_token');
@@ -118,8 +132,8 @@ export default function LoginComp(props) {
   //   router.replace('/');
   // }
   return (
-    <div className="border ml-auto pb-5 mr-auto  mb-[5%]  shadow-lg mt-[25%] lg:mt-[10%] md:w-[70%] lg:w-[40%] w-[100%] bg-white">
-      <div className="fixed top-0 left-0 shadow-md h-[70px] w-full flex bg-white">
+    <div className="h-[100vh] border  w-full" style={{backgroundColor : dark == true ? "rgb(40,31,39)":"white",color:dark == true ? "white":"black"}}>
+      <div className="fixed top-0 left-0 shadow-md h-[70px] w-full flex " style={{backgroundColor : dark == true ? "rgb(40,31,39)":"white",color:dark == true ? "white":"black"}}>
         <img
           className="w-14 h-14 ml-10 mr-10 self-center"
           src="/images/logo.svg"
@@ -134,16 +148,22 @@ export default function LoginComp(props) {
         >
           {loginState == true ? "Sign Up" : "Sign In"}
         </div>
+        <img className="w-7 h-7 self-center mr-4" src={dark == true ? '/images/light-mode.svg':'/images/dark-mode-night-moon-svgrepo-com.svg'} onClick= {(e)=>
+          { 
+            store.dispatch(setDark(!dark));
+          }}></img>
       </div>
+     
       <div
-        className="flex flex-col gap-10 h-fit  mt-[3%]"
-        style={{ transition: "height 0.8s ease" }}
+        className="flex flex-col gap-10 h-fit pb-6 mt-[150px] lg:w-[45%] w-full shadow-lg ml-auto mr-auto"
+        style={{ transition: "height 0.8s ease" ,backgroundColor : dark == true ? "rgb(40,31,39)":"white",color:dark == true ? "white":"black",border:dark == true ? "1px solid white":""}}
       >
-        <div className="text-3xl text-black  font-sans ml-auto mr-auto mb-[2%]">
+        <div className="text-3xl  font-sans ml-auto mr-auto mb-[2%]">
           {loginState == true ? "Sign In" : "Sign up"}
         </div>
         <form
-          className="flex flex-col gap-5 md:gap-4 pb-3 w-full ml-auto mr-auto"
+          className="flex flex-col gap-5 h-fit md:gap-4 pb-3 w-full ml-auto mr-auto"
+          style={{backgroundColor : dark == true ? "rgb(40,31,39)":"white",color:dark == true ? "white":"black"}}
           onSubmit={(e) => {
             e.preventDefault();
           
@@ -231,7 +251,7 @@ export default function LoginComp(props) {
 
           <button
             type="submit"
-            disabled={submitState}
+            disabled={loading}
             className="ml-auto mr-auto lg:w-[22%] md:w-[28%] w-fit pl-4 pr-4 pt-2 pb-2 text-lg disabled:bg-green-100 bg-green-600 text-white p-3 rounded-md"
           >
             {loading == false
@@ -244,9 +264,7 @@ export default function LoginComp(props) {
               style={{ display: loading === true ? "block" : "none" }}
             ></div>
           </button>
-        </form>
-      </div>
-      <div className="flex flex-col ml-auto mr-auto">
+          <div className="flex flex-col ml-auto mr-auto">
         <div
           className="ml-auto mr-auto dark:text-black"
           style={{ display: loginState == true ? "block" : "none" }}
@@ -271,6 +289,8 @@ export default function LoginComp(props) {
             {loginState == true ? "Sign up" : "Sign In"}
           </span>
         </div>
+      </div>
+        </form>
       </div>
     </div>
   );

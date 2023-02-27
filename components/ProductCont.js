@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct, removeProduct } from "../state/cartSlice";
 import store from "../state/store";
 import RatingBar from "./RatingBar";
@@ -17,6 +17,7 @@ function findInArray(arr, p) {
 export default function ProductCont(props) {
   let dispatch = useDispatch();
   let ref = useRef();
+  let dark = useSelector((state) => state.products.dark)
 
   let [inCart, setInCart] = useState(
     findInArray(store.getState().cart.value, props.product) === -1
@@ -27,7 +28,7 @@ export default function ProductCont(props) {
   if(props.e)
 {
  
-  return(<div className="flex w-[180px] gap-2 lg:w-60 lg:h-60 h-64 flex-col border ">
+  return(<div className="flex ml-auto mr-auto gap-2 w-full lg:w-60 lg:h-60 h-64 flex-col border ">
   
   <div className="h-48 w-full anim_beat" ></div>
   <div className="h-10 w-full anim_beat"></div>
@@ -35,7 +36,7 @@ export default function ProductCont(props) {
 }
   return (
     <div
-      className="relative  w-fit overflow-hidden rounded-md shadow-md h-fit "
+      className="relative  w-fit overflow-hidden  shadow-md h-fit "
       onMouseEnter={(e) => {
         ref.current.style.transform = "translateY(0%)";
       }}
@@ -77,14 +78,14 @@ export default function ProductCont(props) {
           </Link>
         </button>
       </div>
-      <div className="relative w-[180px] lg:w-60 lg:h-60 h-64 flex flex-col bg-[#fefefe]   border">
+      <div className="relative w-[180px] lg:w-60 lg:h-60 h-64 flex flex-col bg-[#fefefe]   border" style={{backgroundColor:dark ==true ? 'rgb(40 31 39)':'white',color:dark == true ? 'white':'black'}}>
         <img
           className="w-[100%] ml-auto mr-auto h-[68%] z-10"
           src={props.product.thumbnail}
           layout='fill'
         ></img>
         <div className="flex flex-col gap-2">
-          <div className="flex text-black w-[100%]">
+          <div className="flex 4w-[100%]">
             <div className="lg:text-md text-sm text-ellipsis max-w-[60%] lg:max-h-[25px] ml-2 mr-auto">
               {props.product.title}
             </div>

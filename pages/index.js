@@ -54,9 +54,20 @@ export default function Home()
     // let [products,setProducts] = useState([])
     
     let products = useSelector((state) => state.products.value)
+    let dark = useSelector((state) => state.products.dark)
     let [error,setError] = useState('');
     let errorRef = useRef();
-   useEffect(()=>{ 
+   useEffect(()=>{  
+    if(dark == true)
+   {
+    document.body.style.backgroundColor = 'black';
+    document.body.style.color = 'white';
+
+   }
+    else
+  {  document.body.style.backgroundColor  ='#f9f9f9'
+    document.body.style.color = 'black';}
+
 setWidth(window.innerWidth)
 // fetchData(setError);
 if(store.getState().products.value.length === 0)
@@ -91,7 +102,7 @@ if(t != undefined && u != undefined)
   
 }  
     return(
-        <div className="flex flex-col gap-4 h-[100%]">
+        <div className="flex flex-col gap-4 h-[100%] ">
     <Head>
         <title>Top Shop</title>
         <meta name="description" content="TopShop e-commerce website" />
@@ -99,7 +110,7 @@ if(t != undefined && u != undefined)
         <meta name='viewport' content='width=device-width,initial-scale = 1' />
     </Head>
     <Nav></Nav>
-  <div className='flex flex-col gap-5 lg:mt-[8%] md:mt-[15%] mt-[20%]'>
+  <div className='flex flex-col-reverse md:flex-col gap-5 lg:mt-[8%] md:mt-[15%] mt-[20%]'>
     
   {/* <ProductsContainer products={products}  title="Newest Products" width={wwidth}/>   */}
     {/* <div>{store.getState().products.value.length + " initiated : " + initiated}</div> */}
@@ -119,8 +130,10 @@ if(t != undefined && u != undefined)
     }}>x</div>
     </div>
     <ProductsContainer products={products.filter((e)=> (e.rating-4)*5 > 4)} title= "Top Rated Products" width={wwidth}/>
-    <div className='text-2xl font-semibold ml-20 w-fit mt-[1%] mb-[2%] before:bg-red-600'>Or browse by category</div>
+    <div className='text-2xl hidden lg:block mb-[100px] ml-20 w-fit mt-[1%]  before:bg-red-600'>Or browse by category</div>
     <CategoriesCont></CategoriesCont>
+    <div className='text-2xl lg:hidden ml-20 w-fit mt-[1%]  before:bg-red-600' style={{marginBottom:products.length == 0 ? '30px':'120px'}}>Welcome to TopShop</div>
+    
   </div>
         
         </div>
