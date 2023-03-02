@@ -29,7 +29,7 @@ export default function ResetComp(props)
      document.body.style.color = 'black';}
    },[dark])
     return(<div className="w-full h-[100vh] flex flex-col">
-       <div className="fixed top-0 left-0 shadow-md h-[70px] w-full flex " style={{backgroundColor : dark == true ? "rgb(40,31,39)":"white",color:dark == true ? "white":"black"}}>
+       <div className="fixed top-0 left-0 shadow-md h-[70px] w-full flex " style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
         <img
           className="w-14 h-14 ml-10 mr-10 self-center"
           src="/images/logo.svg"
@@ -48,7 +48,7 @@ export default function ResetComp(props)
             store.dispatch(setDark(!dark));
           }}></img>
       </div>
-      <div className="w-full md:w-[75%] lg:w-[45%] shadow-md bg-white rounded-md border overflow-hidden ml-auto mr-auto mt-[10%]" style={{backgroundColor : dark == true ? "rgb(40,31,39)":"white",color:dark == true ? "white":"black"}}>
+      <div className="w-full md:w-[75%] lg:w-[45%] shadow-md bg-white rounded-md border overflow-hidden ml-auto mr-auto mt-[10%]" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
       <div className="flex mt-10 " style={{width:"400%"}} ref={contRef}>
       <div className="w-full h-full  flex flex-col gap-6 mt-[2%]">
       <div className="ml-auto mr-auto  text-center">Enter your email so that we can send you a verification code</div>

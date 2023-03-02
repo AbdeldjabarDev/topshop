@@ -132,8 +132,8 @@ export default function LoginComp(props) {
   //   router.replace('/');
   // }
   return (
-    <div className="h-[100vh] border  w-full" style={{backgroundColor : dark == true ? "rgb(40,31,39)":"white",color:dark == true ? "white":"black"}}>
-      <div className="fixed top-0 left-0 shadow-md h-[70px] w-full flex " style={{backgroundColor : dark == true ? "rgb(40,31,39)":"white",color:dark == true ? "white":"black"}}>
+    <div className="h-[100vh] w-[100vw] flex" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
+      <div className="fixed top-0 left-0 shadow-md h-[70px] w-full flex " style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
         <img
           className="w-14 h-14 ml-10 mr-10 self-center"
           src="/images/logo.svg"
@@ -156,14 +156,14 @@ export default function LoginComp(props) {
      
       <div
         className="flex flex-col gap-10 h-fit pb-6 mt-[150px] lg:w-[45%] w-full shadow-lg ml-auto mr-auto"
-        style={{ transition: "height 0.8s ease" ,backgroundColor : dark == true ? "rgb(40,31,39)":"white",color:dark == true ? "white":"black",border:dark == true ? "1px solid white":""}}
+        style={{ transition: "height 0.8s ease" ,backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black",border:dark == true ? "1px solid white":""}}
       >
-        <div className="text-3xl  font-sans ml-auto mr-auto mb-[2%]">
+        <div className="text-3xl  font-sans ml-auto mr-auto mb-[2%]" style={{color:dark == true ? "white":"black"}}>
           {loginState == true ? "Sign In" : "Sign up"}
         </div>
         <form
           className="flex flex-col gap-5 h-fit md:gap-4 pb-3 w-full ml-auto mr-auto"
-          style={{backgroundColor : dark == true ? "rgb(40,31,39)":"white",color:dark == true ? "white":"black"}}
+          style={{backgroundColor : dark == true ? "#000d1a":"white",}}
           onSubmit={(e) => {
             e.preventDefault();
           
@@ -182,7 +182,7 @@ export default function LoginComp(props) {
           }}
         >
           <input
-            className="md:w-[80%] w-[90%]  lg:w-[90%] lg:max-w-[550px] pl-3 ml-auto mr-auto p-4  rounded-md border border-slate-400 mb-[2%]"
+            className="md:w-[80%] w-[90%] text-black lg:w-[90%] lg:max-w-[550px] pl-3 ml-auto mr-auto p-4  rounded-md border border-slate-400 mb-[2%]"
             placeholder="Email"
             type="email"
             onChange={(e) => {
@@ -191,7 +191,7 @@ export default function LoginComp(props) {
           ></input>
           <div className="text-red-600 ml-[12.5%]">{emailError}</div>
           <input
-            className="md:w-[80%] w-[90%]  lg:w-[90%] lg:max-w-[550px]  pl-3 ml-auto mr-auto p-4  rounded-md border border-slate-400 mb-[2%]"
+            className="md:w-[80%] w-[90%] text-black lg:w-[90%] lg:max-w-[550px]  pl-3 ml-auto mr-auto p-4  rounded-md border border-slate-400 mb-[2%]"
             placeholder="Password"
             type="password"
             onChange={(e) => {
@@ -200,7 +200,7 @@ export default function LoginComp(props) {
           ></input>
           <input
             className={
-              "md:w-[80%] w-[90%] lg:w-[90%] lg:max-w-[550px]  pl-3 ml-auto mr-auto p-4 rounded-md border border-slate-400 mb-[2%]"
+              "md:w-[80%] w-[90%] lg:w-[90%] text-black lg:max-w-[550px]  pl-3 ml-auto mr-auto p-4 rounded-md border border-slate-400 mb-[2%]"
             }
             placeholder="Confirm Password"
             type="password"

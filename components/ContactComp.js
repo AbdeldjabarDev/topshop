@@ -15,7 +15,7 @@ export default function ContactComp(props)
     let iRef = useRef();
     let dark = useSelector((state) => state.products.dark);
     let [loading,setLoading] = useState(false);
-    return(<div className="flex flex-col w-full h-full" style={{backgroundColor : dark == true ? "rgb(40 31 39)":"white",color:dark == true ? "white":"black"}}>
+    return(<div className="flex flex-col w-full h-full" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
 <Nav></Nav>
 <div className="lg:w-[45%] h-fit  md:w-[60%] w-full  shadow-md  ml-auto mr-auto  mt-[100px] overflow-hidden" >
     <div className="w-[200%] flex " ref={contRef}>

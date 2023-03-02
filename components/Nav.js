@@ -28,15 +28,15 @@ export default function Nav(props) {
   let accountRef = useRef();
   let [closed, setClosed] = useState(true);
   return (
-    <div className="fixed h-[70px] top-0 left-0 md:h-[70px] mb-[15%] text-xl w-[100vw] z-20 flex gap-5 shadow-sm  cursor-default" style={{backgroundColor:dark ==true ? 'rgb(40 31 39)':'white'}}>
+    <div className="fixed h-[70px] top-0 left-0 md:h-[70px] mb-[15%] text-xl w-[100vw] z-20 flex gap-5 shadow-sm  cursor-default" style={{backgroundColor:dark ==true ? '#000d1a':'white'}}>
       <div
         className="absolute md:w-[30%] lg:[15%] w-[100%] overflow-hidden  shadow-md h-[100vh]  top-0 left-0 bg-white text-black flex flex-col translate-x-[-100%] " 
         ref={navRef}
-        style={{backgroundColor:dark ==true ? 'rgb(40 31 39)':'white',color : dark == true ? "white":"black",transition:'transform 0.5s ease'}}
+        style={{backgroundColor:dark ==true ? '#000d1a':'white',color : dark == true ? "white":"black",transition:'transform 0.5s ease'}}
       >
         <div
           className="flex pl-4 mt-[50px] pt-4 pb-4 content-center gap-4 "
-          style={{backgroundColor:dark ==true ? 'rgb(40 31 39)':'white',transition:'transform 0.5s ease'}}
+          style={{backgroundColor:dark ==true ? '#000d1a':'white',transition:'transform 0.5s ease'}}
 
           onClick={(e) => {
             if (closed === true) {
@@ -57,7 +57,7 @@ export default function Nav(props) {
           <div >Categories </div>
         </div>
         <div
-          className="pl-4 flex flex-col gap-4 h-0 text-black overflow-hidden overflow-y-auto"
+          className="pl-4 flex flex-col gap-4 h-0 overflow-hidden overflow-y-auto"
           ref={categoriesRef}
           style={{ transition: "height 0.8s ease" }}
         >
@@ -85,7 +85,7 @@ export default function Nav(props) {
         </div>
         <div className="flex flex-col">
           <div
-            className="flex  pt-4 pb-4 gap-4 pl-4 content-center hover:bg-green-50"
+            className="flex  pt-4 pb-4 gap-4 pl-4 content-center hover:bg-green-50 hover:text-black"
             onClick={(e) => {
               router.replace("/purchases");
             }}
@@ -94,7 +94,7 @@ export default function Nav(props) {
             <div>My Purchases</div>
           </div>
           <div
-            className="flex pl-4 gap-4 pt-4 pb-4 content-center hover:bg-green-50"
+            className="flex pl-4 gap-4 pt-4 pb-4 content-center hover:bg-green-50 hover:text-black"
             onClick={(e) => {
               router.replace("/contact");
             }}

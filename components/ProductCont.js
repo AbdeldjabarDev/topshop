@@ -78,7 +78,7 @@ export default function ProductCont(props) {
           </Link>
         </button>
       </div>
-      <div className="relative w-[180px] lg:w-60 lg:h-60 h-64 flex flex-col bg-[#fefefe]   border" style={{backgroundColor:dark ==true ? 'rgb(40 31 39)':'white',color:dark == true ? 'white':'black'}}>
+      <div className="relative w-[180px] lg:w-60 lg:h-60 h-64 flex flex-col bg-[#fefefe]   border" style={{backgroundColor:dark ==true ? '#000d1a':'white',color:dark == true ? 'white':'black'}}>
         <img
           className="w-[100%] ml-auto mr-auto h-[68%] z-10"
           src={props.product.thumbnail}

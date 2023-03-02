@@ -130,7 +130,7 @@ if(t != undefined && u != undefined)
     }}>x</div>
     </div>
     <ProductsContainer products={products.filter((e)=> (e.rating-4)*5 > 4)} title= "Top Rated Products" width={wwidth}/>
-    <div className='text-2xl hidden lg:block mb-[100px] ml-20 w-fit mt-[1%]  before:bg-red-600'>Or browse by category</div>
+    <div className='text-2xl hidden lg:block  ml-20 w-fit mt-[1%]  before:bg-red-600' style={{marginBottom:products.length == 0 ? "20px":"120px"}}>Or browse by category</div>
     <CategoriesCont></CategoriesCont>
     <div className='text-2xl lg:hidden ml-20 w-fit mt-[1%]  before:bg-red-600' style={{marginBottom:products.length == 0 ? '30px':'120px'}}>Welcome to TopShop</div>
     

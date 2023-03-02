@@ -52,7 +52,7 @@ export default function CartProductCont(props) {
            <Image src="/images/cart_minus.svg" layout="fill"></Image>
           </div>
           </div>
-          <button className= "relative mt-auto text-black ml-auto mr-auto border border-red-500 bg-transparent hover:bg-red-500 p-3 hover:text-white rounded-lg content-center h-fit lg:top-[100%]"
+          <button className= "relative mt-auto  ml-auto mr-auto border border-red-500 bg-transparent hover:bg-red-500 p-3 hover:text-white rounded-lg content-center h-fit lg:top-[100%]"
           onClick={(e)=>{
             dispatch(removeProduct(props.product));
             setCount(null);
