@@ -140,7 +140,7 @@ export default function LoginComp(props) {
           onClick={(e) => router.replace("/")}
         ></img>
         <div
-          className="w-[85px] pt-2 pl-3 cursor-default h-[50px] text-lg self-center mr-10 ml-auto rounded-md bg-green-600 text-white"
+          className="w-[90px] pt-2 px-2 cursor-default h-[50px] text-lg self-center mr-10 ml-auto rounded-md bg-green-600 text-white"
           onClick={(e) => {
             setLoginState(!loginState);
             setGeneralError('');
@@ -158,7 +158,7 @@ export default function LoginComp(props) {
         className="flex flex-col gap-10 h-fit pb-6 mt-[150px] lg:w-[45%] w-full shadow-lg ml-auto mr-auto"
         style={{ transition: "height 0.8s ease" ,backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black",border:dark == true ? "1px solid white":""}}
       >
-        <div className="text-3xl  font-sans ml-auto mr-auto mb-[2%]" style={{color:dark == true ? "white":"black"}}>
+        <div className="text-3xl  font-sans ml-auto mr-auto mb-[20px] mt-[10px]" style={{color:dark == true ? "white":"black"}}>
           {loginState == true ? "Sign In" : "Sign up"}
         </div>
         <form

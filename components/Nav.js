@@ -30,13 +30,13 @@ export default function Nav(props) {
   return (
     <div className="fixed h-[70px] top-0 left-0 md:h-[70px] mb-[15%] text-xl w-[100vw] z-20 flex gap-5 shadow-sm  cursor-default" style={{backgroundColor:dark ==true ? '#000d1a':'white'}}>
       <div
-        className="absolute md:w-[30%] lg:[15%] w-[100%] overflow-hidden  shadow-md h-[100vh]  top-0 left-0 bg-white text-black flex flex-col translate-x-[-100%] " 
+        className="absolute md:w-[30%] lg:[15%] w-[100%] overflow-hidden  shadow-md h-[100vh]  top-0 left-0 text-black flex flex-col translate-x-[-100%] " 
         ref={navRef}
         style={{backgroundColor:dark ==true ? '#000d1a':'white',color : dark == true ? "white":"black",transition:'transform 0.5s ease'}}
       >
         <div
-          className="flex pl-4 mt-[50px] pt-4 pb-4 content-center gap-4 "
-          style={{backgroundColor:dark ==true ? '#000d1a':'white',transition:'transform 0.5s ease'}}
+          className="flex hover:bg-green-100 hover:text-black pl-4 mt-[50px] pt-4 pb-4 content-center gap-4 "
+          style={{transition:'transform 0.5s ease'}}
 
           onClick={(e) => {
             if (closed === true) {

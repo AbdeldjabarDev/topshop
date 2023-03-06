@@ -28,7 +28,7 @@ export default function ProductsContainer(props)
   {
     if(props.products.length == 0)
     return(<div className="flex flex-col ml-20">
-       <div className='text-2xl font-semibold w-fit    mr-auto mt-[1%] mb-[2%] before:bg-red-600 '>{props.title}</div>
+       <div className='text-2xl  w-fit    mr-auto mt-[1%] mb-[2%] before:bg-red-600 '>{props.title}</div>
       <div className="flex gap-9 w-full overflow-hidden">
 
       <ProductCont e></ProductCont>
@@ -65,7 +65,7 @@ export default function ProductsContainer(props)
     if(props.products.length == 0)
     return(
       <div className="w-full  ml-auto mr-auto flex flex-col">
-      <div className='text-2xl font-semibold w- text-center w-fit ml-auto mr-auto mb-[2%]'>{props.title}</div>
+      <div className='text-2xl  w- text-center w-fit ml-auto mr-auto mb-[2%]'>{props.title}</div>
        
      <div className='flex w-fit ml-auto mr-auto justify-center pl-[2%] flex-wrap pt-6  lg:ml-auto  -[2px]  -red-600 lg:gap-6 gap-3' ref={parentRef} >
      <ProductCont e></ProductCont>        

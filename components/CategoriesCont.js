@@ -20,13 +20,16 @@ export default function CategoriesCont()
     }
   
     else
-    return (<div className="lg:ml-20 ml-auto mr-auto w-full flex lg:gap-6 gap-3 md:flex-row flex-col">
+    return (   <div className="ml-16 flex gap-6 w-[calc(100%-64px)] overflow-hidden">
+
     <ProductCont e></ProductCont>
     <ProductCont e></ProductCont>
     <ProductCont e></ProductCont>
     <ProductCont e></ProductCont>
-    <ProductCont e></ProductCont>
-    </div> )
+    <ProductCont e></ProductCont></div>
+
+  
+ )
  
   
 }
