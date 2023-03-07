@@ -155,7 +155,7 @@ export default function LoginComp(props) {
       </div>
      
       <div
-        className="flex flex-col gap-10 h-fit pb-6 mt-[150px] lg:w-[45%] w-full shadow-lg ml-auto mr-auto"
+        className="flex flex-col gap-10 h-fit pb-6 mt-[150px] lg:w-[45%] md:w-[70%] w-full shadow-lg ml-auto mr-auto"
         style={{ transition: "height 0.8s ease" ,backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black",border:dark == true ? "1px solid white":""}}
       >
         <div className="text-3xl  font-sans ml-auto mr-auto mb-[20px] mt-[10px]" style={{color:dark == true ? "white":"black"}}>
