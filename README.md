@@ -10,11 +10,11 @@ with a frontend and a backend
 # How to use :
 First, make sure to have git,nodejs and npm installed 
 - clone this repository with and navigate to it
-`git clone https://github.com/abdeldjabardev/topshop.git`
+-`git clone https://github.com/abdeldjabardev/topshop.git`
 `cd topshop`
 - Install dependencies by running 
-`npm install`
+-`npm install`
 - Start the development server by running 
-`npm run dev`
+-`npm run dev`
 - In your favorite browser type : http://localhost:3000
 
