@@ -5,5 +5,5 @@ with a frontend and a backend
 - NextJS 
 - ReactJS
 # Assets
-- (SVGRepo)[https://svgrepo.com]
-- Products att (dummyjson)[https://dummyjson.com]
+- [SVGRepo](https://svgrepo.com)
+- Products att [dummyjson](https://dummyjson.com)
