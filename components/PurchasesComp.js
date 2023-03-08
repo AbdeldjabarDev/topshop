@@ -39,18 +39,18 @@ export default function PurchasesComp(props)
     }
     if(getCookie('topshop_userId')== undefined)
     return(
-        <div className="w-full h-full flex flex-col   gap-6" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
+        <div className="w-full h-full flex flex-col   gap-6" style={{backgroundColor : dark == true ? "#000d2f":"white",color:dark == true ? "white":"black"}}>
             <Nav></Nav>
-            <div className="w-full lg:w-[50%] h-[100vh]  mt-[90px]  ml-auto mr-auto flex flex-col gap-6" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
+            <div className="w-full lg:w-[50%] h-[100vh]  mt-[90px]  ml-auto mr-auto flex flex-col gap-6" style={{backgroundColor : dark == true ? "#000d2f":"white",color:dark == true ? "white":"black"}}>
                 <img className="max-h-[400px]" src='/images/Secure.svg'></img>
         <div className="ml-auto mr-auto justify-center text-xl lg:text-2xl mt-[5%] w-fit">You need to login to view your purchases</div>
-        <button className="pl-5 pr-5 pt-3 pb-3 rounded-md text-lg w-fit ml-auto mr-auto text-white bg-green-600 shadow-md active:shadow-none " onClick={(e)=>{
+        <button className="pl-5 pr-5 pt-3 pb-3 rounded-md text-lg w-fit ml-auto mr-auto border text-white primary shadow-md active:shadow-none " onClick={(e)=>{
             router.replace('/login')
         }}>Login</button>
             </div>
         </div>
     )
-    return(<div className="w-full min-h-screen h-fit flex flex-col" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
+    return(<div className="w-full min-h-screen h-fit flex flex-col" style={{backgroundColor : dark == true ? "#000d2f":"white",color:dark == true ? "white":"black"}}>
 <Nav></Nav>
 <div className="flex flex-col rounded-md shadow-md lg:w-[60%] md:w-[80%] w-full ml-auto mr-auto mt-[10%] pb-[5%] pl-[3%] pr-[3%]">
 <div className="mt-[2%] ml-auto mr-auto text-2xl">Here you will find every purchase you made from TopShop</div>

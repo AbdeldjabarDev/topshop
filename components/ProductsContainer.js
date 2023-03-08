@@ -50,7 +50,7 @@ export default function ProductsContainer(props)
        </div>
      </div>
            
-     <div className="p-3 mr-24 ml-auto w-fit shadow-md active:shadow-none  bg-green-600 mt-4 text-white" onClick={(e)=>
+     <div className="p-3 cursor-default hover:translate-y-[-4px] mr-24 ml-auto w-fit shadow-md active:shadow-none  primary mt-4 text-white" onClick={(e)=>
     {
      router.replace('/all-products')      
     }}>View more</div>

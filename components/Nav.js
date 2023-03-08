@@ -35,7 +35,7 @@ export default function Nav(props) {
         style={{backgroundColor:dark ==true ? '#000d1a':'white',color : dark == true ? "white":"black",transition:'transform 0.5s ease'}}
       >
         <div
-          className="flex hover:bg-green-100 hover:text-black pl-4 mt-[50px] pt-4 pb-4 content-center gap-4 "
+          className="flex hover:bg-blue-50 hover:text-black pl-4 mt-[50px] pt-4 pb-4 content-center gap-4 "
           style={{transition:'transform 0.5s ease'}}
 
           onClick={(e) => {
@@ -85,7 +85,7 @@ export default function Nav(props) {
         </div>
         <div className="flex flex-col">
           <div
-            className="flex  pt-4 pb-4 gap-4 pl-4 content-center hover:bg-green-50 hover:text-black"
+            className="flex  pt-4 pb-4 gap-4 pl-4 content-center hover:bg-blue-50 hover:text-black"
             onClick={(e) => {
               router.replace("/purchases");
             }}
@@ -94,7 +94,7 @@ export default function Nav(props) {
             <div>My Purchases</div>
           </div>
           <div
-            className="flex pl-4 gap-4 pt-4 pb-4 content-center hover:bg-green-50 hover:text-black"
+            className="flex pl-4 gap-4 pt-4 pb-4 content-center hover:bg-blue-50 hover:text-black"
             onClick={(e) => {
               router.replace("/contact");
             }}
@@ -103,7 +103,7 @@ export default function Nav(props) {
             <div>Contact us</div>
           </div>
           <div
-            className="flex  pt-4 pb-4 content-center hover:bg-green-50"
+            className="flex  pt-4 pb-4 content-center hover:bg-blue-50"
             onClick={(e) => {
               if(store.getState().cart.loggedIn == true)
               {
@@ -123,7 +123,7 @@ export default function Nav(props) {
           </div>
         </div>
         <div
-          className="flex pt-4 pl-4 gap-4 pb-4 content-center lg:hidden hover:bg-green-50"
+          className="flex pt-4 pl-4 gap-4 pb-4 content-center lg:hidden hover:bg-blue-50"
           onClick={(e) => {
             router.replace("/cart");
           }}

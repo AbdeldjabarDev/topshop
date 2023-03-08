@@ -27,7 +27,7 @@ export default function CartProductCont(props) {
         <div className="flex mr-[0.2%] lg:flex-nowrap flex-wrap ml-auto gap-3  h-fit translate-y-[-50%] border-red-600">
           <div className="flex gap-3 mt-[10%]">
           <div
-            className="p-3 rounded-full relative bg-green-600 text-black shadow-md w-10  h-10 pb-3 top-[50%] translate-y-[-50%] "
+            className="p-3 rounded-full relative primary text-black shadow-md w-10  h-10 pb-3 top-[50%] translate-y-[-50%] "
             onClick={(e) => {
               if (count < props.product.stock) {
                 dispatch(setProductcount({ p: props.product, c: count + 1 }));

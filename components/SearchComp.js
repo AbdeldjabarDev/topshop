@@ -20,7 +20,7 @@ export default function SearchComp(props)
         });
   },[props.query])
     return(
-        <div className="w-full h-full flex flex-col" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
+        <div className="w-full h-full flex flex-col" style={{backgroundColor : dark == true ? "#000d2f":"white",color:dark == true ? "white":"black"}}>
         <Nav ></Nav>
        <div className="ml-auto mr-auto lg:mt-[90px] mt-[90px] flex flex-col w-full lg:w-[60%] h-[100vh]  pb-10 shadow-md pl-2" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
        <div className="text-2xl w-full border-b p-3 justify-center flex content-center mt-[1.5%]">Search results for  "{props.query}"</div>

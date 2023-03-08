@@ -58,15 +58,7 @@ export default function Home()
     let [error,setError] = useState('');
     let errorRef = useRef();
    useEffect(()=>{  
-    if(dark == true)
-   {
-    document.body.style.backgroundColor = 'black';
-    document.body.style.color = 'white';
 
-   }
-    else
-  {  document.body.style.backgroundColor  ='#f9f9f9'
-    document.body.style.color = 'black';}
 
 setWidth(window.innerWidth)
 // fetchData(setError);

@@ -15,9 +15,9 @@ export default function ContactComp(props)
     let iRef = useRef();
     let dark = useSelector((state) => state.products.dark);
     let [loading,setLoading] = useState(false);
-    return(<div className="flex flex-col w-full h-full" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
+    return(<div className="flex flex-col w-full h-full" style={{backgroundColor : dark == true ? "#000d2f":"white",color:dark == true ? "white":"black"}}>
 <Nav></Nav>
-<div className="lg:w-[45%] h-fit  md:w-[60%] w-full  shadow-md  ml-auto mr-auto  mt-[100px] overflow-hidden" >
+<div className="lg:w-[45%] h-fit  md:w-[60%] w-full  shadow-md  ml-auto mr-auto  mt-[100px] overflow-hidden border" >
     <div className="w-[200%] flex " ref={contRef}>
   <form className="w-[100%] flex flex-col gap-5" onSubmit={(e)=>
 {
@@ -57,7 +57,7 @@ export default function ContactComp(props)
     <button
             type="submit"
             disabled={loading}
-            className="ml-auto mr-auto lg:w-[22%] md:w-[28%] w-fit pl-4 pr-4 pt-2 pb-2 text-lg disabled:bg-green-100 bg-green-600 text-white p-3 rounded-md"
+            className="ml-auto mr-auto lg:w-[22%] md:w-[28%] w-fit pl-4 pr-4 pt-2 pb-2 border text-lg disabled:bg-green-100 primary text-white p-3 rounded-md"
           >
          { loading == true ?"" : "Send"}
             <div
@@ -69,7 +69,7 @@ export default function ContactComp(props)
   </form>
   <div className="w-[100%] flex flex-col gap-5">
   <div className="ml-auto mr-auto text-2xl mt-[16%]">Your issue has been reported</div>
-  <button className="ml-auto mr-auto w-[150px] shadow-md active:shadow-none bg-green-600  rounded-md transition-none" onClick={(e)=>
+  <button className="ml-auto mr-auto w-[150px] shadow-md active:shadow-none primary  rounded-md transition-none" onClick={(e)=>
 {
  router.replace('/')   
 }}>Continue Shopping</button>

@@ -69,9 +69,9 @@ export default function ProductCont(props) {
         >
           {inCart === true ? "Remove From Cart" : "Add to Cart"}
         </button>
-        <button className=" w-[70%] lg:text-xl text-md mt-[5%] border border-green-600 bg-green-600 text-white hover:text-black rounded-full hover:bg-transparent ml-6 lg:ml-10 mr-auto">
+        <button className=" w-[70%] lg:text-xl text-md mt-[5%] border border-blue-600 bg-blue-600 text-white hover:text-black rounded-full hover:bg-transparent ml-6 lg:ml-10 mr-auto">
           <Link href={"/details?id=" + props.product._id}>
-            <span className=" hover:text-green-600 text-md " onClick={(e)=>
+            <span className=" hover:text-blue-700 text-md " onClick={(e)=>
             {
               dispatch(setSelectedProduct(props.product));
             }}>Details</span>

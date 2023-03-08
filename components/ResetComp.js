@@ -36,7 +36,7 @@ export default function ResetComp(props)
           onClick={(e) => router.replace("/")}
         ></img>
         <div
-          className="w-[85px] pt-2 pl-3 cursor-default h-[50px] text-lg self-center mr-10 ml-auto rounded-md bg-green-600"
+          className="w-[85px] pt-2 pl-3 cursor-default h-[50px] text-lg self-center mr-10 ml-auto rounded-md primary"
           onClick={(e) => {
            router.replace('/login')
           }}
@@ -53,7 +53,7 @@ export default function ResetComp(props)
       <div className="w-full h-full  flex flex-col gap-6 mt-[2%]">
       <div className="ml-auto mr-auto  text-center">Enter your email so that we can send you a verification code</div>
       <input className="ml-auto mr-auto lg:w-[80%] w-[90%] pl-2 h-[50px] rounded-md border" placeholder="Email" type="email"ref={eRef}></input>
-      <button className="p-3 mt-4 rounded-md shadow-md bg-green-600  ml-auto mr-auto" onClick={async(e)=>
+      <button className="p-3 mt-4 rounded-md shadow-md primary  ml-auto mr-auto" onClick={async(e)=>
       {
         console.log('Email submitted ')
         console.log(JSON.stringify({email:eRef.current.value}))
@@ -102,7 +102,7 @@ export default function ResetComp(props)
       <div className="w-full h-full flex flex-col gap-4 s mt-[2%]">
       <div className="ml-auto mr-auto">We sent a verfication code to {store.getState().cart.resetEmail.substring(0,3)+"****"+store.getState().cart.resetEmail.substring(store.getState().cart.resetEmail.indexOf('@'),store.getState().cart.resetEmail.length)}</div>
       <input className="ml-auto mr-auto  w-[70%] pl-2 h-[40px] rounded-md border" placeholder="Verification code" ref={cRef}></input>
-      <button className="p-3 rounded-md shadow-md bg-green-600  ml-auto mr-auto" onClick={(e)=>
+      <button className="p-3 rounded-md shadow-md primary  ml-auto mr-auto" onClick={(e)=>
       {
         dispatch(setResetCode(cRef.current.value.toString()));
         fetch('https://topshopserver.onrender.com/'+'reset/verify',{
@@ -141,7 +141,7 @@ export default function ResetComp(props)
        <input className=" w-[70%] pl-2 h-[6vh] rounded-md border" placeholder="Verification code" ref={pRef}></input>
       <div>Confirm new password</div>
       <input className=" w-[70%] pl-2 h-[6vh] rounded-md border" placeholder="Verification code" ref={npRef}></input>
-      <button className="p-3 rounded-md shadow-md bg-green-600  ml-auto mr-auto" onClick={(e)=>
+      <button className="p-3 rounded-md shadow-md primary  ml-auto mr-auto" onClick={(e)=>
       {
         if(npRef.current.value !== pRef.current.value)
         {
@@ -181,7 +181,7 @@ export default function ResetComp(props)
       </div>
       <div className="w-full h-full flex flex-col mt-[2%]">
 <div>Password has been reset successfully </div>
-<button className="p-3 rounded-md shadow-md bg-green-600 ml-auto mr-auto" onClick={(e)=>
+<button className="p-3 rounded-md shadow-md primary ml-auto mr-auto" onClick={(e)=>
       {
         router.replace('/login')
       }}>Continue</button>

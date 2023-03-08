@@ -132,7 +132,7 @@ export default function LoginComp(props) {
   //   router.replace('/');
   // }
   return (
-    <div className="h-[100vh] w-[100vw] flex" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
+    <div className={"h-[100vh] w-[100vw] flex " }style={{backgroundColor : dark == true ? "#000d2f":"white",color:dark == true ? "white":"black"}}>
       <div className="fixed top-0 left-0 shadow-md h-[70px] w-full flex " style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
         <img
           className="w-14 h-14 ml-10 mr-10 self-center"
@@ -140,7 +140,7 @@ export default function LoginComp(props) {
           onClick={(e) => router.replace("/")}
         ></img>
         <div
-          className="w-[90px] pt-2 px-2 cursor-default h-[50px] text-lg self-center mr-10 ml-auto rounded-md bg-green-600 text-white"
+          className={"w-[90px] pt-2 px-2 cursor-default h-[50px] text-lg border primary self-center mr-10 ml-auto rounded-md text-white"}
           onClick={(e) => {
             setLoginState(!loginState);
             setGeneralError('');
@@ -239,6 +239,7 @@ export default function LoginComp(props) {
                 generalError != "" ? "rgba(220,38,38,0.2)" : "transparent",
               borderLeft:
                 generalError != "" ? "4px solid rgb(220 38 38)" : "none",
+              color:dark == true ? "white":"black"  
             }}
           >
             <img
@@ -252,7 +253,8 @@ export default function LoginComp(props) {
           <button
             type="submit"
             disabled={loading}
-            className="ml-auto mr-auto lg:w-[22%] md:w-[28%] w-fit pl-4 pr-4 pt-2 pb-2 text-lg disabled:bg-green-100 bg-green-600 text-white p-3 rounded-md"
+            className={"ml-auto mr-auto lg:w-[22%] md:w-[28%] w-fit pl-4 pr-4 pt-2 pb-2 text-lg disabled:bg-blue-100 primary border  text-white p-3 rounded-md" }
+            
           >
             {loading == false
               ? loginState == true

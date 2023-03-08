@@ -39,7 +39,7 @@ export default function CartComp(props) {
   return (
     <div className="w-[100vw] h-[100vh] flex" style={{backgroundColor:dark == true ? "#000d1a":"#f7f7f7"}}>
       <Nav></Nav>
-      <div className="absolute top-[0px] left-1 lg:left-[25%] hidden h-fit lg:h-[40px] w-fit lg:w-[40vw] border border-white shadow-md" ref={notloggedInRef}  style={{backgroundColor:dark ==true ? '#000d1a':'white',transition:'transform 0.5s ease',color:dark == true ? "white":"black"}}>
+      <div className="absolute top-[0px] left-1 lg:left-[25%] hidden h-fit lg:h-[40px] w-full lg:w-[50vw] border border-white shadow-md" ref={notloggedInRef}  style={{backgroundColor:dark ==true ? '#000d1a':'white',transition:'transform 0.5s ease',color:dark == true ? "white":"black"}}>
       <div className="ml-1 lg:ml-10 text-lg">You need to login first to confirm the purchase</div>
       <div className="mr-6 text-lg ml-auto text-red-600 cursor-default rounded-full p-1 to-blue-900" onClick={(e)=>
       {
@@ -48,7 +48,7 @@ export default function CartComp(props) {
         notloggedInRef.current.style.transform  = "translateY(-90px)";
       }}>x</div>
     </div>
-      <div className="lg:w-[50%] w-full ml-auto mr-auto border border-white lg:border  rounded-md shadow-none lg:shadow-lg flex flex-col mt-[90px]  gap-4" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
+      <div className="lg:w-[50%] h-fit w-full ml-auto mr-auto border border-white lg:border  rounded-md shadow-none lg:shadow-lg flex flex-col mt-[90px]  gap-4" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
         <div className="flex flex-col ml-0 lg:ml-[10%]">
           {store.getState().cart.value.map((e, i) => {
             return <CartProductCont product={e} count={i} key={e.id}/>;
@@ -59,7 +59,7 @@ export default function CartComp(props) {
         <div className="ml-auto mr-[10%] mb-[2%]">{"Total : " +totalAmount+ "$"}</div>
           <button
             disabled={loading}
-            className="bg-green-600 disabled:bg-green-200 p-3 w-[150px] rounded-md mb-10 font-semibold ml-auto mr-auto "
+            className="primary disabled:bg-green-200 border text-white p-3 w-[150px] rounded-md mb-10  ml-auto mr-auto "
             onClick={(e) => {
               if(store.getState().cart.loggedIn == false)
               {

@@ -26,7 +26,7 @@ export default function DetailsComp()
     let dispatch = useDispatch();
     let [inCart,setInCart] = useState(false);
     console.log(p)
-return ( <div className="flex flex-col w-full h-full" style={{backgroundColor : dark == true ? "#000d1a":"white",color:dark == true ? "white":"black"}}>
+return ( <div className="flex flex-col w-full h-full" style={{backgroundColor : dark == true ? "#000d2f":"white",color:dark == true ? "white":"black"}}>
 <Nav></Nav>
 <div className="lg:w-[90%] w-full mt-[8%] ml-auto flex flex-col mr-auto     -black">
   <div className="mt-[15%] lg:mt-[1%] text-2xl ml-0 lg:ml-[10%] mb-[1%]">{p.title}</div>
@@ -56,7 +56,7 @@ return ( <div className="flex flex-col w-full h-full" style={{backgroundColor : 
       <div><div className="text-opacity-50 text-lg">Discount</div><div className="text-xl">{p.discountPercentage + "%"}</div></div>
       <RatingBar rating={(p.rating - 4) * 5} />
     </div>
-    <button className="bg-green-600 text-white p-2 rounded-md w-fit ml-auto mr-auto" onClick={(e)=>{
+    <button className="primary text-white p-2 rounded-md w-fit ml-auto mr-auto" onClick={(e)=>{
 if (inCart === false) {
 console.log("adding " + p.title);
 // store.getState().cart.value.delete(props.product._id);
