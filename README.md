@@ -4,7 +4,6 @@ with a frontend and a backend
 # Technologies used for frontend
 - NextJS 
 - ReactJS
-
 # Assets
-- SVGRepo at https://svgrepo.com
-- Figma 
+- (SVGRepo)[https://svgrepo.com]
+- Products att (dummyjson)[https://dummyjson.com]
