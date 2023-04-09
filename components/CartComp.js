@@ -59,7 +59,7 @@ export default function CartComp(props) {
         <div className="ml-auto mr-[10%] mb-[2%]">{"Total : " +totalAmount+ "$"}</div>
           <button
             disabled={loading}
-            className="primary disabled:bg-green-200 border text-white p-3 w-[150px] rounded-md mb-10  ml-auto mr-auto "
+            className="primary disabled:bg-blue-200 border text-white p-3 w-[150px] rounded-md mb-10  ml-auto mr-auto "
             onClick={(e) => {
               if(store.getState().cart.loggedIn == false)
               {

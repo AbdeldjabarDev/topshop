@@ -45,12 +45,12 @@ export default function ProductCont(props) {
       }}
     >
       <div
-        className="absolute z-20 top-0 left-0  translate-y-[100%] bg-white bg-opacity-50 lg:w-full h-full"
+        className="absolute z-20 top-0 left-0 flex flex-col translate-y-[100%] bg-white bg-opacity-50 lg:w-full h-full"
         ref={ref}
         style={{ transition: "transform 0.8s ease" }}
       >
         <button
-          className="w-[88%]  lg:w-[70%] text-md lg:text-xl mt-[40%] border border-black bg-black text-white hover:text-black rounded-full hover:bg-transparent ml-3 lg:ml-10 mr-auto"
+          className="w-[88%]  lg:w-[85%] text-md lg:text-xl mt-[40%] border border-black bg-black text-white hover:text-black rounded-full hover:bg-transparent mx-auto "
           onClick={(e) => {
            
               if (inCart === false) {

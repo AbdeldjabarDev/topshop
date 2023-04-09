@@ -103,7 +103,7 @@ export default function Nav(props) {
             <div>Contact us</div>
           </div>
           <div
-            className="flex  pt-4 pb-4 content-center hover:bg-blue-50"
+            className="flex flex-row pl-4 gap-4 pt-4 pb-4 content-center hover:bg-blue-50 hover:text-black"
             onClick={(e) => {
               if(store.getState().cart.loggedIn == true)
               {
@@ -113,13 +113,16 @@ export default function Nav(props) {
               router.replace('/login')
              
             }}
-          style={{display:store.getState().cart.loggedIn == true ? 'block':'none'}}
+          style={{display:store.getState().cart.loggedIn == true ? 'flex':'none'}}
           >
-            <img
-              className="w-6 h-6 ml-2 mr-2"
+           <img
+              className="w-6 h-6 mr-2"
               src={store.getState().cart.loggedIn == true ? "/images/logout-svgrepo-com.svg":"/images/account-svgrepo-com.svg"}
-            ></img>
+            />
+              
             <div>{store.getState().cart.loggedIn == true ? 'Log out':'Login'}</div>
+            {/* <div>{store.getState().cart.loggedIn == true ? 'Log out':'Login'}</div> */}
+            
           </div>
         </div>
         <div
@@ -206,11 +209,13 @@ export default function Nav(props) {
           transition: "opacity 0.4s ease",
         }}
       >
-        <div className="bg-white shadow-lg border border-slate-600 rounded-b-lg w-full h-full overflow-hidden">
+        <div className="bg-white text-black shadow-lg border border-slate-600 rounded-b-lg w-full h-full overflow-hidden" 
+        
+        >
           <div className="flex flex-col pl-3 mt-[4%]">
-            <div className="text-opcaity-50 text-black text-sm mb-1">Email</div>
+            <div className="text-opcaity-50 text-sm mb-1">Email</div>
             <div className="text-lg mb-4">{getCookie("topshop_email")}</div>
-            <div className="text-opcaity-50 text-black text-sm mb-1">
+            <div className="text-opcaity-50  text-sm mb-1">
               Last logged in
             </div>
             <div className="text-lg">{getCookie("topshop_lastlogin")}</div>
